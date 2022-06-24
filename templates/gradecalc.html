@@ -1,12 +1,18 @@
  {%extends "layout.html"%}
 {%block content%}
-<form method="POST">
+<form method="POST",action="">
+    {{form.hidden_tag()}}
     <div class="content-section shadow">
-        <div class='center'>
-        <input class='moderntextbox shadow'></input><input class='moderntextbox sm shadow'></input><input class='moderntextbox sm shadow '></input>
         
+        
+        <div class='center' class="form-group">
+            <span>{{form.assignment.label(class="form-control-label")}} {{form.assignment(class="moderntextbox,form-control ")}}
+                {{form.grade.label(class="form-control-label")}}
+            {{form.grade(class="form-control, sm ")}}
+            {{form.weight.label(class="form-control-label")}}
+            {{form.weight(class="form-control, sm ")}}</span>
         </div>
-        <button class="btn btn-outline-info">Submit</button>
+        {{form.submit(class="btn btn-outline-info")}}
     </div>
 </form>
 
