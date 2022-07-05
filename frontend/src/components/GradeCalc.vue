@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<!-- <style lang='scss' scoped>
+<style lang='scss' scoped>
 .hero {
   background-image: url("../assets/hero-bg.png");
   background-attachment: fixed;
@@ -63,4 +63,4 @@ export default {
     }
   }
 }
-</style> -->
+</style>
