@@ -1,8 +1,8 @@
 <template>
-    <header :class="{'scrolled-nav': scrollPosition}">
+    <header :class="{'scrolled-nav': scrolledNav}">
         <nav>
             <div >
-                <a class="branding">GradeHub</a>
+                <h2 class="branding">GradeHub</h2>
             </div>
             <ul v-show="!mobile" class="navigation">
                 <li><router-link :to="{ name: 'GradeCalc'}" class="link">Grade Calculator</router-link></li>
@@ -29,15 +29,40 @@ export default {
   name: 'NavBar',
   data () {
     return {
-      scrolledPosition: null,
-      mobile: true,
+      scrolledNav: null,
+      mobile: null,
       mobileNav: null,
       windowWidth: null
     }
   },
+  created () {
+    window.addEventListener('resize', this.checkScreen)
+    this.checkScreen()
+  },
+  mounted () {
+    window.addEventListener('scroll', this.updateScroll)
+  },
   methods: {
     toggelMobileNav () {
       this.mobileNav = !this.mobileNav
+    },
+    updateScroll () {
+      const scrollPosition = window.scrollY
+      if (scrollPosition > 50) {
+        this.scrolledNav = true
+      } else {
+        this.scrolledNav = false
+      }
+    },
+
+    checkScreen () {
+      this.windowWidth = window.innerWidth
+      if (this.windowWidth <= 750) {
+        this.mobile = true
+      } else {
+        this.mobile = false
+        this.mobileNav = false
+      }
     }
   }
 }
@@ -57,7 +82,6 @@ header {
         transition: .5s ease all;
         width: 90%;
         @media(min-width: 1140px) {
-            max-width:1140px;
         }
         ul,
         .link {
@@ -83,10 +107,16 @@ header {
         .branding {
             display: flex;
             align-items: center;
+            a {
+                width: 50px;
+                transition: .5 ease all;
+            }
         }
-        a {
-            width: 50px;
-            transition: .5 ease all;
+        .navigation {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
         }
         .icon {
             display: flex;
@@ -116,6 +146,7 @@ header {
             background-color: #fff;
             top: 0;
             left:0;
+            justify-content: flex-start;
             li {
                 margin-left: 0;
                 .link{
@@ -123,6 +154,32 @@ header {
                 }
             }
         }
+        .mobile-nav-enter-active,
+        .mobile-nav-leave-active {
+          transition: 1s ease all;
+        }
+        .mobile-nav-enter-from {
+          transform: translateX(-250px);
+        }
+        .mobile-nav-enter-to {
+          transform: translateX(-250px);
+        }
+        .mobile-nav-enter-to {
+          transform: translateX(0);
+        }
     }
+}
+.scrolled-nav {
+  background-color: #000;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.6);
+  nav {
+    padding: 8px 0;
+    .branding {
+        img {
+            width: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.6);
+        }
+    }
+  }
 }
 </style>
