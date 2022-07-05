@@ -4,7 +4,7 @@
             <div >
                 <h2 class="branding">GradeHub</h2>
             </div>
-            <ul v-show="!mobile" class="navigation">
+            <ul v-show="!mobile" class="navigations">
                 <li><router-link :to="{ name: 'GradeCalc'}" class="link">Grade Calculator</router-link></li>
                 <li><router-link to="{ name: ''}" class="link">GPA Calculator</router-link></li>
                 <li><router-link to="{ name: ''}" class="link">Final Grade</router-link></li>
@@ -14,7 +14,7 @@
                 <i class="far fa-bars" @click="toggelMobileNav" v-show="mobile" :class="{'icon-active': mobileNav}"></i>
             </div>
             <transition name="mobile-nav" class='dropdown-nav'>
-                <ul v-show="mobileNav" class="navigation">
+                <ul v-show="mobileNav" class="navigations">
                     <li><router-link :to="{ name: 'GradeCalc'}" class="link">Grade Calculator</router-link></li>
                     <li><router-link to="{ name: ''}" class="link">GPA Calculator</router-link></li>
                     <li><router-link to="{ name: ''}" class="link">Final Grade</router-link></li>
@@ -69,7 +69,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 header {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(2,181,157,0.8);
     z-index: 99;
     width: 100%;
     position: fixed;
@@ -78,7 +78,7 @@ header {
     nav {
         display: flex;
         flex-direction: row;
-        padding: 12px 0;
+        padding: 9px 0;
         transition: .5s ease all;
         width: 90%;
         @media(min-width: 1140px) {
@@ -100,8 +100,8 @@ header {
             transition: .5 ease all;
             padding-bottom: 4px;
             &:hover {
-                color: #00afea;
-                border-bottom: 1px solid #00afea;
+                color: rgba(255, 255, 255);
+                border-bottom: 1px solid rgba(255, 255, 255);
             }
         }
         .branding {
@@ -112,7 +112,7 @@ header {
                 transition: .5 ease all;
             }
         }
-        .navigation {
+        .navigations {
             display: flex;
             align-items: center;
             flex: 1;
@@ -170,10 +170,10 @@ header {
     }
 }
 .scrolled-nav {
-  background-color: #000;
+  background-color: (2,181,157,1);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.6);
   nav {
-    padding: 8px 0;
+    padding: 6px 0;
     .branding {
         img {
             width: 40px;
