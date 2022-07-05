@@ -26,7 +26,7 @@ export default {
 <style lang='scss' scoped>
 .mid-box {
     width: 25%;
-    height: 75%;
+    height: 150%;
     border-radius: 10px;
     background-color: rgba(220, 222, 220,0.8);
     position: absolute;

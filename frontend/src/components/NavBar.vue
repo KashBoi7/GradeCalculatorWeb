@@ -2,23 +2,23 @@
     <header :class="{'scrolled-nav': scrolledNav}">
         <nav>
             <div >
-                <h2 class="branding">GradeHub</h2>
+                <h2 class="brandings">GradeHub</h2>
             </div>
             <ul v-show="!mobile" class="navigations">
-                <li><router-link :to="{ name: 'GradeCalc'}" class="link">Grade Calculator</router-link></li>
-                <li><router-link to="{ name: ''}" class="link">GPA Calculator</router-link></li>
-                <li><router-link to="{ name: ''}" class="link">Final Grade</router-link></li>
-                <li><router-link to="{ name: ''}" class="link">Final Grade</router-link></li>
+                <li><router-link :to="{ name: 'GradeCalc'}" class="links">Grade Calculator</router-link></li>
+                <li><router-link to="{ name: ''}" class="links">GPA Calculator</router-link></li>
+                <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
+                <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
             </ul>
             <div class="icon">
                 <i class="far fa-bars" @click="toggelMobileNav" v-show="mobile" :class="{'icon-active': mobileNav}"></i>
             </div>
             <transition name="mobile-nav" class='dropdown-nav'>
                 <ul v-show="mobileNav" class="navigations">
-                    <li><router-link :to="{ name: 'GradeCalc'}" class="link">Grade Calculator</router-link></li>
-                    <li><router-link to="{ name: ''}" class="link">GPA Calculator</router-link></li>
-                    <li><router-link to="{ name: ''}" class="link">Final Grade</router-link></li>
-                    <li><router-link to="{ name: ''}" class="link">Final Grade</router-link></li>
+                    <li><router-link :to="{ name: 'GradeCalc'}" class="links">Grade Calculator</router-link></li>
+                    <li><router-link to="{ name: ''}" class="links">GPA Calculator</router-link></li>
+                    <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
+                    <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
                 </ul>
             </transition>
         </nav>
@@ -69,6 +69,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 header {
+    height: 70px;
     background-color: rgba(2,181,157,0.8);
     z-index: 99;
     width: 100%;
@@ -76,15 +77,18 @@ header {
     transition: .5s ease all;
     color: #fff;
     nav {
+        margin-bottom: auto;
+        margin-top: auto;
         display: flex;
         flex-direction: row;
-        padding: 9px 0;
+        padding: 4px 0;
+        padding-bottom: 0px;
         transition: .5s ease all;
         width: 90%;
         @media(min-width: 1140px) {
         }
         ul,
-        .link {
+        .links {
             font-weight: 500;
             color: #fff;
             list-style: none;
@@ -95,7 +99,7 @@ header {
             padding: 16px;
             margin-left: 16px;
         }
-        .link{
+        .links{
             font-size: 14px;
             transition: .5 ease all;
             padding-bottom: 4px;
@@ -104,7 +108,7 @@ header {
                 border-bottom: 1px solid rgba(255, 255, 255);
             }
         }
-        .branding {
+        .brandings {
             display: flex;
             align-items: center;
             a {
@@ -149,8 +153,8 @@ header {
             justify-content: flex-start;
             li {
                 margin-left: 0;
-                .link{
-                    color: #000;
+                .links{
+                    color: rgba(0,0,0);
                 }
             }
         }
@@ -170,16 +174,22 @@ header {
     }
 }
 .scrolled-nav {
-  background-color: (2,181,157,1);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.6);
-  nav {
-    padding: 6px 0;
-    .branding {
-        img {
-            width: 40px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.6);
-        }
+  height: 53px;
+  background-color: rgb(2,181,157);
+    nav {
+        margin-bottom: auto;
+        margin-top: auto;
+        display: flex;
+        flex-direction: row;
+        padding: 0px 0;
+        padding-bottom: 0px;
+        transition: .5s ease all;
+        width: 90%;
+      .branding {
+          img {
+              width: 40px;
+          }
+      }
     }
-  }
 }
 </style>
