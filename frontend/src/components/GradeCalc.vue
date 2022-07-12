@@ -24,32 +24,80 @@
               </tr>
            </thead>
            <tbody>
-              <tr v-for="index in x" :key="index">
-                <td scope="col">
-                  <input v-if="index == 1" class="box" placeholder="e.g. Participation">
-                  <input v-else-if="index == 2" class="box" placeholder="e.g. Homework">
-                  <input v-else class="box">
-                </td>
-                <td scope="col">
-                  <input v-if="index == 1" class="small-box box" placeholder="e.g. 91" type="number">
-                  <input v-else-if="index == 2" class="small-box box" placeholder="e.g. 94" type="number">
-                  <input v-else class="small-box box " type="number">
-                </td>
-                <td scope="col">
-                  <input v-if="index == 1" class="small-box box" placeholder="e.g. A-">
-                  <input v-else-if="index == 2" class="small-box box" placeholder="e.g. A">
-                  <input v-else class="small-box box">
-                </td>
-                <td scope="col" >
-                  <input v-if="index == 1" class="small-box box" placeholder="e.g. 10" type="number">
-                  <input v-else-if="index == 2" class="small-box box" placeholder="e.g. 20" type="number">
-                  <input v-else class="small-box box" type="number">
-                </td>
-              </tr>
+            <TransitionGroup name="list">
+                <tr v-for="index in x" :key="index">
+                    <td scope="col">
+                        <input v-if="index == 1" class="box" v-model="category[index-1]" placeholder="e.g. Participation">
+                        <input v-else-if="index == 2" class="box" v-model="category[index-1]" placeholder="e.g. Homework">
+                        <input v-else v-model="category[index-1]" class="box">
+                    </td>
+                    <td scope="col">
+                      <input v-if="index == 1" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 91" type="number">
+                      <input v-else-if="index == 2" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 94" type="number">
+                      <input v-else class="small-box box " v-model.lazy="grade[index-1]" type="number">
+                    </td>
+                    <td scope="col">
+                      <select v-if="index == 1" class="small-box box" v-model="grade_letter[index-1]" placeholder="e.g. A-">
+                        <option>- -</option>
+                        <option>A+</option>
+                        <option>A</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B</option>
+                        <option>B-</option>
+                        <option>C+</option>
+                        <option>C</option>
+                        <option>C-</option>
+                        <option>D+</option>
+                        <option>D</option>
+                        <option>D-</option>
+                        <option>F</option>
+                      </select>
+                      <select v-else-if="index == 2" class="small-box box" v-model="grade_letter[index-1]" placeholder="e.g. A">
+                        <option>- -</option>
+                        <option>A+</option>
+                        <option>A</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B</option>
+                        <option>B-</option>
+                        <option>C+</option>
+                        <option>C</option>
+                        <option>C-</option>
+                        <option>D+</option>
+                        <option>D</option>
+                        <option>D-</option>
+                        <option>F</option>
+                      </select>
+                      <select v-else class="small-box box" v-model="grade_letter[index-1]">
+                        <option>- -</option>
+                        <option>A+</option>
+                        <option>A</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B</option>
+                        <option>B-</option>
+                        <option>C+</option>
+                        <option>C</option>
+                        <option>C-</option>
+                        <option>D+</option>
+                        <option>D</option>
+                        <option>D-</option>
+                        <option>F</option>
+                      </select>
+                    </td>
+                    <td scope="col" >
+                      <input v-if="index == 1" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 10" type="number">
+                      <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number">
+                      <input v-else class="small-box box" v-model="weight[index-1]" type="number">
+                    </td>
+                </tr>
+             </TransitionGroup>
            </tbody>
           </table>
           <button @click="increase" type="button" class="btn btn-outline-dark">Add Row</button>
-          <button type="button" class="btn btn-outline-success">Calculate</button>
+          <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
+          <p>{{FinalGrade}}</p>
         </div>
       </div>
     </div>
@@ -63,12 +111,30 @@ export default {
   components: {},
   data () {
     return {
-      x: 5
+      x: 5,
+      weight: [],
+      grade: [],
+      grade_letter: [],
+      category: [],
+      FinalGrade: null
     }
   },
   methods: {
     increase () {
       this.x++
+    },
+    calculate () {
+      let g = 0
+      let w = 0
+      let div = 0
+      this.FinalGrade = 0
+      for (let i = 0; i < this.x; i++) {
+        g = this.grade[i]
+        w = this.weight[i]
+        div = div + w
+        this.FinalGrade = this.FinalGrade + (g * w)
+      }
+      this.FinalGrade = (this.FinalGrade / div)
     }
   }
 
@@ -80,7 +146,7 @@ section {
   background-image: url("..\\assets\\5291450.jpg");
   background-attachment: fixed;
   position: relative;
-  height: 100vh;
+  height: 300vh;
   padding:130px;
     img {
     object-fit: cover;
@@ -147,6 +213,15 @@ section {
 
     &:before {
       filter: blur(4px);
+}
+    .list-enter-active,
+    .list-leave-active {
+      transition: all 0.5s ease;
+      }
+    .list-enter-from,
+    .list-leave-to {
+      opacity: 0;
+      transform: translateX(30px);
 }
 }
   section .mid-box:before{
