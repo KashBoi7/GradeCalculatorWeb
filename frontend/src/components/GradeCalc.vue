@@ -6,6 +6,9 @@
         >
         Grade Calculator
       </h1> -->
+    <div class="alert alert-danger" role="alert">
+  Fill out the missing fields
+    </div>
     <div class="mid-box">
       <div>
         <div>
@@ -132,7 +135,7 @@ export default {
         if ((this.grade[i] == null & this.weight[i] == null)) {
           g = 0
           w = 0
-        } else if (this.grade[i] === '' || this.weight[i] === '') {
+        } else if (this.grade[i] === '' & this.weight[i] === '') {
           g = 0
           w = 0
         } else {
@@ -254,6 +257,9 @@ section {
   }
 .white {
   font-color: white;
+}
+.alert-danger {
+
 }
 .box{
   display: block;
