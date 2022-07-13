@@ -129,12 +129,37 @@ export default {
       let div = 0
       this.FinalGrade = 0
       for (let i = 0; i < this.x; i++) {
-        g = this.grade[i]
-        w = this.weight[i]
+        if ((this.grade[i] == null & this.weight[i] == null)) {
+          g = 0
+          w = 0
+        } else if (this.grade[i] === '' || this.weight[i] === '') {
+          g = 0
+          w = 0
+        } else {
+          g = this.grade[i]
+          w = this.weight[i]
+        }
         div = div + w
         this.FinalGrade = this.FinalGrade + (g * w)
       }
       this.FinalGrade = (this.FinalGrade / div)
+    },
+    ifArrayNull () {
+      for (let i = 0; i < this.x; i++) {
+        var nums = 0
+        if ((this.grade[i] == null || this.weight[i] == null)) {
+          nums = nums + 0
+        } else if (this.grade[i] === '' || this.weight[i] === '') {
+          nums = nums + 0
+        } else {
+          nums++
+        }
+      }
+      if (nums === 0) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 
