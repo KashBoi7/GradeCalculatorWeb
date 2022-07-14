@@ -6,7 +6,7 @@
         >
         Grade Calculator
       </h1> -->
-    <div class="alert alert-danger" role="alert">
+    <div v-show='incorrect' class="alert alert-danger" role="alert">
   Fill out the missing fields
     </div>
     <div class="mid-box">
@@ -114,6 +114,7 @@ export default {
   components: {},
   data () {
     return {
+      incorrect: null,
       x: 5,
       weight: [],
       grade: [],
@@ -131,6 +132,7 @@ export default {
       let w = 0
       let div = 0
       this.FinalGrade = 0
+      this.ifArrayNull()
       for (let i = 0; i < this.x; i++) {
         if ((this.grade[i] == null & this.weight[i] == null)) {
           g = 0
@@ -146,22 +148,10 @@ export default {
         this.FinalGrade = this.FinalGrade + (g * w)
       }
       this.FinalGrade = (this.FinalGrade / div)
-    },
-    ifArrayNull () {
-      for (let i = 0; i < this.x; i++) {
-        var nums = 0
-        if ((this.grade[i] == null || this.weight[i] == null)) {
-          nums = nums + 0
-        } else if (this.grade[i] === '' || this.weight[i] === '') {
-          nums = nums + 0
-        } else {
-          nums++
-        }
-      }
-      if (nums === 0) {
-        return true
+      if (isNaN(this.FinalGrade)) {
+        this.incorrect = true
       } else {
-        return false
+        this.incorrect = false
       }
     }
   }
