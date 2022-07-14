@@ -93,7 +93,7 @@
           <button @click="increase" type="button" class="btn btn-outline-dark">Add Row</button>
           <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
           <div v-show='correct' class="FinalGradeBox">
-            <h2>Your Grade: {{FinalGrade}}</h2>
+            <h3>Your Grade: {{FinalGrade}}</h3>
           </div>
            <div v-show='incorrect' class="alert alert-danger" role="alert">
   Fill out the missing fields
