@@ -1,14 +1,5 @@
 <template>
   <section class="home">
-      <!-- <h1
-        class="text-center bg-primary text-white"
-        style="border-radius: 10px"
-        >
-        Grade Calculator
-      </h1> -->
-    <div v-show='incorrect' class="alert alert-danger" role="alert">
-  Fill out the missing fields
-    </div>
     <div class="mid-box">
       <div>
         <div>
@@ -94,13 +85,20 @@
                       <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number">
                       <input v-else class="small-box box" v-model="weight[index-1]" type="number">
                     </td>
+                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </tr>
              </TransitionGroup>
            </tbody>
           </table>
           <button @click="increase" type="button" class="btn btn-outline-dark">Add Row</button>
           <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
-          <p>{{FinalGrade}}</p>
+          <div v-show='correct' class="FinalGradeBox">
+            <h2>Your Grade: {{FinalGrade}}</h2>
+          </div>
+           <div v-show='incorrect' class="alert alert-danger" role="alert">
+  Fill out the missing fields
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
         </div>
       </div>
     </div>
@@ -114,6 +112,7 @@ export default {
   components: {},
   data () {
     return {
+      correct: null,
       incorrect: null,
       x: 5,
       weight: [],
@@ -132,7 +131,6 @@ export default {
       let w = 0
       let div = 0
       this.FinalGrade = 0
-      this.ifArrayNull()
       for (let i = 0; i < this.x; i++) {
         if ((this.grade[i] == null & this.weight[i] == null)) {
           g = 0
@@ -150,8 +148,10 @@ export default {
       this.FinalGrade = (this.FinalGrade / div)
       if (isNaN(this.FinalGrade)) {
         this.incorrect = true
+        this.correct = false
       } else {
         this.incorrect = false
+        this.correct = true
       }
     }
   }
@@ -247,6 +247,13 @@ section {
   }
 .white {
   font-color: white;
+}
+.FinalGradeBox {
+  border: 2px solid #00d084;
+  border-radius: 5px;
+  background-color : rgba(0, 212, 145,0.14);
+  color : rgba(0, 212, 145,0.14);
+  text-align: center;
 }
 .alert-danger {
 
