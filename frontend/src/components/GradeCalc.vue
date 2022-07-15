@@ -31,7 +31,23 @@
                       <input v-else class="small-box box " v-model.lazy="grade[index-1]" type="number">
                     </td>
                     <td scope="col">
-                      <select v-if="index == 1" class="small-box box" v-model="grade_letter[index-1]" placeholder="e.g. A-">
+                      <select @change='getPercent(index-1)' v-if="index == 1" class="small-box box" v-model="grade_letter[index-1]" >
+                        <option value="Blank">- -</option>
+                        <option value="A+">A+</option>
+                        <option>A</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B</option>
+                        <option>B-</option>
+                        <option>C+</option>
+                        <option>C</option>
+                        <option>C-</option>
+                        <option>D+</option>
+                        <option>D</option>
+                        <option>D-</option>
+                        <option>F</option>
+                      </select>
+                      <select @change='getPercent(index-1)' v-else-if="index == 2" class="small-box box" v-model="grade_letter[index-1]">
                         <option>- -</option>
                         <option>A+</option>
                         <option>A</option>
@@ -47,23 +63,7 @@
                         <option>D-</option>
                         <option>F</option>
                       </select>
-                      <select v-else-if="index == 2" class="small-box box" v-model="grade_letter[index-1]" placeholder="e.g. A">
-                        <option>- -</option>
-                        <option>A+</option>
-                        <option>A</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B</option>
-                        <option>B-</option>
-                        <option>C+</option>
-                        <option>C</option>
-                        <option>C-</option>
-                        <option>D+</option>
-                        <option>D</option>
-                        <option>D-</option>
-                        <option>F</option>
-                      </select>
-                      <select v-else class="small-box box" v-model="grade_letter[index-1]">
+                      <select @change='getPercent(index-1)' v-else class="small-box box" v-model="grade_letter[index-1]">
                         <option>- -</option>
                         <option>A+</option>
                         <option>A</option>
@@ -85,11 +85,13 @@
                       <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number">
                       <input v-else class="small-box box" v-model="weight[index-1]" type="number">
                     </td>
-                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    {{grade_letter[index-1]}}
+                    {{grade[index-1]}}
                 </tr>
              </TransitionGroup>
            </tbody>
           </table>
+          <button @click='decrease' type="button" class="btn btn-outline-danger">Remove</button>
           <button @click="increase" type="button" class="btn btn-outline-dark">Add Row</button>
           <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
           <div v-show='correct' class="FinalGradeBox">
@@ -112,6 +114,12 @@ export default {
   components: {},
   data () {
     return {
+      selected: ' ',
+      options: [
+        'A+',
+        'A',
+        'A-'
+      ],
       correct: null,
       incorrect: null,
       x: 5,
@@ -125,6 +133,32 @@ export default {
   methods: {
     increase () {
       this.x++
+    },
+    decrease () {
+      this.x--
+    },
+    getPercent (i) {
+      const grades = {
+        'A+': 97,
+        A: 93,
+        'A-': 90,
+        'B+': 87,
+        B: 83,
+        'B-': 80,
+        'C+': 77,
+        C: 73,
+        'C-': 70,
+        'D+': 67,
+        D: 63,
+        'D-': 60,
+        F: 59
+
+      }
+      for (const [key, value] of Object.entries(grades)) {
+        if (key === this.grade_letter[i]) {
+          this.grade[i] = value
+        }
+      }
     },
     calculate () {
       let g = 0
@@ -226,7 +260,7 @@ section {
       margin-bottom: 10px;
     }
     .btn-outline-danger{
-      margin-right:10px;
+      margin-bottom: 10px;
     }
 
     &:before {
@@ -266,7 +300,7 @@ section {
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid black;
-  height: 35px;
+  height: 40px;
   outline: 0;
   font-size: 16px;
 }
