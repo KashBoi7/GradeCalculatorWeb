@@ -87,6 +87,7 @@
                     </td>
                     {{grade_letter[index-1]}}
                     {{grade[index-1]}}
+                    {{weight[index-1]}}
                 </tr>
              </TransitionGroup>
            </tbody>
@@ -115,11 +116,6 @@ export default {
   data () {
     return {
       selected: ' ',
-      options: [
-        'A+',
-        'A',
-        'A-'
-      ],
       correct: null,
       incorrect: null,
       x: 5,
@@ -129,7 +125,7 @@ export default {
       category: [],
       FinalGrade: null,
       grades: {
-        Blank: '',
+        Blank: null,
         'A+': 97,
         A: 93,
         'A-': 90,
@@ -148,12 +144,15 @@ export default {
     }
   },
   methods: {
+    // adds rows
     increase () {
       this.x++
     },
+    // removes rows
     decrease () {
       this.x--
     },
+    // fills the grade textbox after you select the corresponding letter
     getPercent (i) {
       for (const [key, value] of Object.entries(this.grades)) {
         if (key === this.grade_letter[i]) {
@@ -161,9 +160,11 @@ export default {
         }
       }
     },
+    // fills the grade_letter selectbox after you stype in the corresponding percentage
     getLetter (i) {
 
     },
+    // code to calculate your final grade
     calculate () {
       let g = 0
       let w = 0
@@ -173,7 +174,7 @@ export default {
         if ((this.grade[i] == null & this.weight[i] == null)) {
           g = 0
           w = 0
-        } else if (this.grade[i] === '' & this.weight[i] === '') {
+        } else if (this.grade[i] === '' || this.weight[i] === '') {
           g = 0
           w = 0
         } else {
