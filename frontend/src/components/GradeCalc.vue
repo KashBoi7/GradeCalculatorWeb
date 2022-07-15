@@ -26,14 +26,14 @@
                         <input v-else v-model="category[index-1]" class="box">
                     </td>
                     <td scope="col">
-                      <input v-if="index == 1" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 91" type="number">
-                      <input v-else-if="index == 2" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 94" type="number">
-                      <input v-else class="small-box box " v-model.lazy="grade[index-1]" type="number">
+                      <input @change='getLetter(index-1)' v-if="index == 1" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 91" type="number">
+                      <input @change='getLetter(index-1)' v-else-if="index == 2" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 94" type="number">
+                      <input @change='getLetter(index-1)' v-else class="small-box box " v-model.lazy="grade[index-1]" type="number">
                     </td>
                     <td scope="col">
                       <select @change='getPercent(index-1)' v-if="index == 1" class="small-box box" v-model="grade_letter[index-1]" >
                         <option value="Blank">- -</option>
-                        <option value="A+">A+</option>
+                        <option >A+</option>
                         <option>A</option>
                         <option>A-</option>
                         <option>B+</option>
@@ -48,7 +48,7 @@
                         <option>F</option>
                       </select>
                       <select @change='getPercent(index-1)' v-else-if="index == 2" class="small-box box" v-model="grade_letter[index-1]">
-                        <option>- -</option>
+                        <option value="Blank">- -</option>
                         <option>A+</option>
                         <option>A</option>
                         <option>A-</option>
@@ -64,7 +64,7 @@
                         <option>F</option>
                       </select>
                       <select @change='getPercent(index-1)' v-else class="small-box box" v-model="grade_letter[index-1]">
-                        <option>- -</option>
+                        <option value="Blank">- -</option>
                         <option>A+</option>
                         <option>A</option>
                         <option>A-</option>
@@ -127,18 +127,9 @@ export default {
       grade: [],
       grade_letter: [],
       category: [],
-      FinalGrade: null
-    }
-  },
-  methods: {
-    increase () {
-      this.x++
-    },
-    decrease () {
-      this.x--
-    },
-    getPercent (i) {
-      const grades = {
+      FinalGrade: null,
+      grades: {
+        Blank: '',
         'A+': 97,
         A: 93,
         'A-': 90,
@@ -154,11 +145,24 @@ export default {
         F: 59
 
       }
-      for (const [key, value] of Object.entries(grades)) {
+    }
+  },
+  methods: {
+    increase () {
+      this.x++
+    },
+    decrease () {
+      this.x--
+    },
+    getPercent (i) {
+      for (const [key, value] of Object.entries(this.grades)) {
         if (key === this.grade_letter[i]) {
           this.grade[i] = value
         }
       }
+    },
+    getLetter (i) {
+
     },
     calculate () {
       let g = 0
@@ -268,7 +272,7 @@ section {
 }
     .list-enter-active,
     .list-leave-active {
-      transition: all 0.5s ease;
+      transition: all 0.3s ease;
       }
     .list-enter-from,
     .list-leave-to {
