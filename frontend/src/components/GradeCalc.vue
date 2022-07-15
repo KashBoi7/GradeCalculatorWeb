@@ -95,13 +95,17 @@
           <button @click='decrease' type="button" class="btn btn-outline-danger">Remove</button>
           <button @click="increase" type="button" class="btn btn-outline-dark">Add Row</button>
           <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
+          <Transition name="bounce">
           <div v-show='correct' class="FinalGradeBox">
             <h3>Your Grade: {{FinalGrade}}</h3>
           </div>
-           <div v-show='incorrect' class="alert alert-danger" role="alert">
-  Fill out the missing fields
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
+          </Transition>
+          <Transition name="bounce">
+            <div v-show='incorrect' class="alert alert-danger" role="alert">
+    Fill out the missing fields
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </Transition>
         </div>
       </div>
     </div>
@@ -296,6 +300,23 @@ section {
 }
 .alert-danger {
 
+}
+.bounce-enter-active {
+  animation: bounce-in 0.4s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.4s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .box{
   display: block;
