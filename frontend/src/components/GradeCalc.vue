@@ -26,9 +26,9 @@
                         <input v-else v-model="category[index-1]" class="box">
                     </td>
                     <td scope="col">
-                      <input @change='getLetter(index-1)' v-if="index == 1" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 91" type="number">
-                      <input @change='getLetter(index-1)' v-else-if="index == 2" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 94" type="number">
-                      <input @change='getLetter(index-1)' v-else class="small-box box " v-model.lazy="grade[index-1]" type="number">
+                      <input @change='getLetter(index-1)' v-if="index == 1" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 91" type="number" min="0" max="300">
+                      <input @change='getLetter(index-1)' v-else-if="index == 2" class="small-box box" v-model.lazy="grade[index-1]" placeholder="e.g. 94" type="number" min="0" max="300">
+                      <input @change='getLetter(index-1)' v-else class="small-box box " v-model.lazy="grade[index-1]" type="number" min="0" max="300">
                     </td>
                     <td scope="col">
                       <select @change='getPercent(index-1)' v-if="index == 1" class="small-box box" v-model="grade_letter[index-1]" >
@@ -81,9 +81,9 @@
                       </select>
                     </td>
                     <td scope="col" >
-                      <input v-if="index == 1" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 10" type="number">
-                      <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number">
-                      <input v-else class="small-box box" v-model="weight[index-1]" type="number">
+                      <input v-if="index == 1" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 10" type="number" min="0" max="300">
+                      <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number" min="0" max="300">
+                      <input v-else class="small-box box" v-model="weight[index-1]" type="number" min="0" max="300">
                     </td>
                     {{grade_letter[index-1]}}
                     {{grade[index-1]}}
@@ -97,7 +97,7 @@
           <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
           <Transition name="bounce">
           <div v-show='correct' class="FinalGradeBox">
-            <h3>Your Grade: {{FinalGrade}}</h3>
+            <h3>Your Grade: {{Math.round(FinalGrade)}}</h3>
           </div>
           </Transition>
           <Transition name="bounce">
@@ -166,7 +166,33 @@ export default {
     },
     // fills the grade_letter selectbox after you stype in the corresponding percentage
     getLetter (i) {
-
+      if (this.grade[i] >= 97) {
+        this.grade_letter[i] = 'A+'
+      } else if (this.grade[i] >= 93) {
+        this.grade_letter[i] = 'A'
+      } else if (this.grade[i] >= 90) {
+        this.grade_letter[i] = 'A-'
+      } else if (this.grade[i] >= 87) {
+        this.grade_letter[i] = 'B+'
+      } else if (this.grade[i] >= 83) {
+        this.grade_letter[i] = 'B'
+      } else if (this.grade[i] >= 80) {
+        this.grade_letter[i] = 'B-'
+      } else if (this.grade[i] >= 77) {
+        this.grade_letter[i] = 'C+'
+      } else if (this.grade[i] >= 73) {
+        this.grade_letter[i] = 'C'
+      } else if (this.grade[i] >= 70) {
+        this.grade_letter[i] = 'C-'
+      } else if (this.grade[i] >= 67) {
+        this.grade_letter[i] = 'D+'
+      } else if (this.grade[i] >= 63) {
+        this.grade_letter[i] = 'D'
+      } else if (this.grade[i] >= 60) {
+        this.grade_letter[i] = 'D-'
+      } else {
+        this.grade_letter[i] = 'F'
+      }
     },
     // code to calculate your final grade
     calculate () {
@@ -207,12 +233,12 @@ section {
   background-image: url("..\\assets\\5291450.jpg");
   background-attachment: fixed;
   position: relative;
-  height: 300vh;
-  padding:130px;
+  height: 100vh;
+  padding-top:130px;
     img {
     object-fit: cover;
-    height: 100%;
-    width: 100%;
+    height: 200vh;
+    width: 200vh
   }
   .hero-text {
     height: 100%;
@@ -245,8 +271,9 @@ section {
   }
 }
  .mid-box {
-    width: 570px;
+    max-width: fit-content;
     height: fit-content;
+    min-width: 450px;
     border-radius: 10px;
     background-color: rgba(250, 250, 250,0.8);
     vertical-position: relative;
@@ -319,18 +346,33 @@ section {
   }
 }
 .box{
-  display: block;
-  padding: 10px 6px;
+  display: flex;
+    flex-shrink: 2;
+  max-padding: 10px 6px;
+  max-padding: 7px 6px;
   background-color : transparent;
   color: black;
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid black;
   height: 40px;
+  max-width: 170px;
+  min-width:100px;
   outline: 0;
   font-size: 16px;
 }
+@keyframes boxin {
+  0% {border-bottom: 2px solid black;}
+  100% {  border-bottom: 2px solid rgb(0, 217, 177);}
+}
+.box:focus{
+  animation-name: boxin;
+  animation-duration: 0.4s;
+  border-bottom: 2px solid rgb(0, 217, 177);
+}
 .small-box{
-  width:90px;
+  flex-shrink: 0;
+  max-width: 90px;
+  min-width:90px;
 }
 </style>

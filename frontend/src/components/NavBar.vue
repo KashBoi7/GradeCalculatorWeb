@@ -8,7 +8,7 @@
                 <li><router-link :to="{ name: 'GradeCalc'}" class="links">Grade Calculator</router-link></li>
                 <li><router-link to="{ name: ''}" class="links">GPA Calculator</router-link></li>
                 <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
-                <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
+                <li><router-link to="{ name: ''}" class="links">Grade Tracker</router-link></li>
             </ul>
             <div class="icon">
                 <i class="far fa-bars" @click="toggelMobileNav" v-show="mobile" :class="{'icon-active': mobileNav}"></i>
@@ -18,7 +18,7 @@
                     <li><router-link :to="{ name: 'GradeCalc'}" class="links">Grade Calculator</router-link></li>
                     <li><router-link to="{ name: ''}" class="links">GPA Calculator</router-link></li>
                     <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
-                    <li><router-link to="{ name: ''}" class="links">Final Grade</router-link></li>
+                    <li><router-link to="{ name: ''}" class="links">Grade Tracker</router-link></li>
                 </ul>
             </transition>
         </nav>
