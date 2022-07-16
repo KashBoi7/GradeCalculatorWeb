@@ -85,9 +85,6 @@
                       <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number" min="0" max="300">
                       <input v-else class="small-box box" v-model="weight[index-1]" type="number" min="0" max="300">
                     </td>
-                    {{grade_letter[index-1]}}
-                    {{grade[index-1]}}
-                    {{weight[index-1]}}
                 </tr>
              </TransitionGroup>
            </tbody>
@@ -96,8 +93,8 @@
           <button @click="increase" type="button" class="btn btn-outline-dark">Add Row</button>
           <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
           <Transition name="bounce">
-          <div v-show='correct' class="FinalGradeBox">
-            <h3>Your Grade: {{Math.round(FinalGrade)}}</h3>
+          <div v-show='correct' class="FinalGradeBox" id="Final">
+            <h4 id="letter" class="letter">Your Grade: {{FinalGradeLetter+" "+Math.round(FinalGrade)+'%'}}</h4>
           </div>
           </Transition>
           <Transition name="bounce">
@@ -128,6 +125,7 @@ export default {
       grade_letter: [],
       category: [],
       FinalGrade: null,
+      FinalGradeLetter: null,
       grades: {
         Blank: null,
         'A+': 97,
@@ -222,6 +220,59 @@ export default {
         this.incorrect = false
         this.correct = true
       }
+      if (this.FinalGrade >= 97) {
+        this.FinalGradeLetter = 'A+'
+        document.getElementById('Final').style.border = '2px solid #00d084'
+        document.getElementById('letter').style.color = '#00d084'
+      } else if (this.FinalGrade >= 93) {
+        this.FinalGradeLetter = 'A'
+        document.getElementById('letter').style.color = '#00d084'
+        document.getElementById('Final').style.border = '2px solid #00d084'
+      } else if (this.FinalGrade >= 90) {
+        this.FinalGradeLetter = 'A-'
+        document.getElementById('letter').style.color = '#00d084'
+        document.getElementById('Final').style.border = '2px solid #00d084'
+      } else if (this.FinalGrade >= 87) {
+        this.FinalGradeLetter = 'B+'
+        document.getElementById('Final').style.border = '2px solid #99e600'
+        document.getElementById('letter').style.color = '#99e600'
+      } else if (this.FinalGrade >= 83) {
+        this.FinalGradeLetter = 'B'
+        document.getElementById('letter').style.color = '#99e600'
+        document.getElementById('Final').style.border = '2px solid #99e600'
+      } else if (this.FinalGrade >= 80) {
+        this.FinalGradeLetter = 'B-'
+        document.getElementById('letter').style.color = '#99e600'
+        document.getElementById('Final').style.border = '2px solid #99e600'
+      } else if (this.FinalGrade >= 77) {
+        this.FinalGradeLetter = 'C+'
+        document.getElementById('Final').style.border = '2px solid #e6e600'
+        document.getElementById('letter').style.color = '#cccc00'
+      } else if (this.FinalGrade >= 73) {
+        this.FinalGradeLetter = 'C'
+        document.getElementById('letter').style.color = '#cccc00'
+        document.getElementById('Final').style.border = '2px solid #e6e600'
+      } else if (this.FinalGrade >= 70) {
+        this.FinalGradeLetter = 'C-'
+        document.getElementById('letter').style.color = '#cccc00'
+        document.getElementById('Final').style.border = '2px solid #e6e600'
+      } else if (this.FinalGrade >= 67) {
+        this.FinalGradeLetter = 'D+'
+        document.getElementById('letter').style.color = '#ff8000'
+        document.getElementById('Final').style.border = '2px solid #ff8000'
+      } else if (this.FinalGrade >= 63) {
+        this.FinalGradeLetter = 'D'
+        document.getElementById('letter').style.color = '#ff8000'
+        document.getElementById('Final').style.border = '2px solid #ff8000'
+      } else if (this.FinalGrade >= 60) {
+        this.FinalGradeLetter = 'D-'
+        document.getElementById('letter').style.color = '#ff8000'
+        document.getElementById('Final').style.border = '2px solid #ff8000'
+      } else {
+        this.FinalGradeLetter = 'F'
+        document.getElementById('Final').style.border = '2px solid #ff0000'
+        document.getElementById('letter').style.color = '#ff0000'
+      }
     }
   }
 
@@ -280,6 +331,7 @@ section {
     horizontal-position: absolute;
     margin: auto;
     align-items: center;
+    overflow: hide;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
     tr{
       outline: 0;
@@ -319,11 +371,15 @@ section {
   font-color: white;
 }
 .FinalGradeBox {
+  display: flex;
   border: 2px solid #00d084;
   border-radius: 5px;
-  background-color : rgba(0, 212, 145,0.14);
-  color : rgba(0, 212, 145,0.14);
-  text-align: center;
+  background-color: transparent;
+  justify-content: center;
+  .letter {
+    color : red;
+    margin: 30px;
+  }
 }
 .alert-danger {
 
@@ -347,7 +403,7 @@ section {
 }
 .box{
   display: flex;
-    flex-shrink: 2;
+  flex-shrink: 2;
   max-padding: 10px 6px;
   max-padding: 7px 6px;
   background-color : transparent;
