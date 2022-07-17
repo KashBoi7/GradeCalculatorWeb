@@ -31,7 +31,7 @@
                       <input @change='getLetter(index-1)' v-else class="small-box box " v-model.lazy="grade[index-1]" type="number" min="0" max="300">
                     </td>
                     <td scope="col">
-                      <select @change='getPercent(index-1)' v-if="index == 1" class="small-box box" v-model="grade_letter[index-1]" >
+                      <select @change='getPercent(index-1)' v-if="index == 1" class="selectbox box" v-model="grade_letter[index-1]" >
                         <option  :value="blank" selected>- -</option>
                         <option>A+</option>
                         <option>A</option>
@@ -47,7 +47,7 @@
                         <option>D-</option>
                         <option>F</option>
                       </select>
-                      <select @change='getPercent(index-1)' v-else-if="index == 2" class="small-box box" v-model="grade_letter[index-1]">
+                      <select @change='getPercent(index-1)' v-else-if="index == 2" class="selectbox box" v-model="grade_letter[index-1]">
                         <option :value="blank" selected>- -</option>
                         <option>A+</option>
                         <option>A</option>
@@ -63,7 +63,7 @@
                         <option>D-</option>
                         <option>F</option>
                       </select>
-                      <select @change='getPercent(index-1)' v-else class="small-box box" v-model="grade_letter[index-1]">
+                      <select @change='getPercent(index-1)' v-else class="selectbox box" v-model="grade_letter[index-1]">
                         <option :value='blank' selected >- -</option>
                         <option>A+</option>
                         <option>A</option>
@@ -322,9 +322,9 @@ section {
   }
 }
  .mid-box {
-    max-width: 570px;
+    max-width: 530px;
     height: fit-content;
-    min-width: 550px;
+    min-width: 490px;
     border-radius: 10px;
     background-color: rgba(250, 250, 250,0.8);
     vertical-position: relative;
@@ -412,8 +412,7 @@ section {
   border: none;
   border-bottom: 2px solid black;
   height: 40px;
-  max-width: 170px;
-  min-width:90px;
+  max-width: 100%;
   outline: 0;
   font-size: 16px;
 }
@@ -427,6 +426,9 @@ section {
   border-bottom: 2px solid rgb(0, 217, 177);
 }
 .small-box{
-  max-width: 90px;
+  max-width: 100%;
+}
+.selectbox{
+  width: 95%;
 }
 </style>
