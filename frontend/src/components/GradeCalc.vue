@@ -32,8 +32,8 @@
                     </td>
                     <td scope="col">
                       <select @change='getPercent(index-1)' v-if="index == 1" class="small-box box" v-model="grade_letter[index-1]" >
-                        <option value="Blank">- -</option>
-                        <option >A+</option>
+                        <option  :value="blank" selected>- -</option>
+                        <option>A+</option>
                         <option>A</option>
                         <option>A-</option>
                         <option>B+</option>
@@ -48,7 +48,7 @@
                         <option>F</option>
                       </select>
                       <select @change='getPercent(index-1)' v-else-if="index == 2" class="small-box box" v-model="grade_letter[index-1]">
-                        <option value="Blank">- -</option>
+                        <option :value="blank" selected>- -</option>
                         <option>A+</option>
                         <option>A</option>
                         <option>A-</option>
@@ -64,7 +64,7 @@
                         <option>F</option>
                       </select>
                       <select @change='getPercent(index-1)' v-else class="small-box box" v-model="grade_letter[index-1]">
-                        <option value="Blank">- -</option>
+                        <option :value='blank' selected >- -</option>
                         <option>A+</option>
                         <option>A</option>
                         <option>A-</option>
@@ -80,11 +80,12 @@
                         <option>F</option>
                       </select>
                     </td>
-                    <td scope="col" >
+                    <td scope="col">
                       <input v-if="index == 1" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 10" type="number" min="0" max="300">
                       <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number" min="0" max="300">
                       <input v-else class="small-box box" v-model="weight[index-1]" type="number" min="0" max="300">
                     </td>
+                    {{grade_letter[index-1]}}
                 </tr>
              </TransitionGroup>
            </tbody>
@@ -127,7 +128,7 @@ export default {
       FinalGrade: null,
       FinalGradeLetter: null,
       grades: {
-        Blank: null,
+        '- -': 0,
         'A+': 97,
         A: 93,
         'A-': 90,
@@ -287,9 +288,8 @@ section {
   height: 100vh;
   padding-top:130px;
     img {
-    object-fit: cover;
     height: 200vh;
-    width: 200vh
+    width: 200vh;
   }
   .hero-text {
     height: 100%;
@@ -322,9 +322,9 @@ section {
   }
 }
  .mid-box {
-    max-width: fit-content;
+    max-width: 570px;
     height: fit-content;
-    min-width: 450px;
+    min-width: 550px;
     border-radius: 10px;
     background-color: rgba(250, 250, 250,0.8);
     vertical-position: relative;
@@ -338,6 +338,8 @@ section {
     }
     .table {
       border: none;
+      table-layout:auto;
+      width:150px;
     }
     .btn-outline-dark{
       margin-right: 10px;
@@ -363,10 +365,11 @@ section {
       opacity: 0;
       transform: translateX(30px);
 }
-}
-  section .mid-box:before{
-    filter: blur(48px);
+  td {
+    justify-content: center;
   }
+}
+
 .white {
   font-color: white;
 }
@@ -403,17 +406,14 @@ section {
 }
 .box{
   display: flex;
-  flex-shrink: 2;
   max-padding: 10px 6px;
-  max-padding: 7px 6px;
   background-color : transparent;
   color: black;
-  box-sizing: border-box;
   border: none;
   border-bottom: 2px solid black;
   height: 40px;
   max-width: 170px;
-  min-width:100px;
+  min-width:90px;
   outline: 0;
   font-size: 16px;
 }
@@ -427,8 +427,6 @@ section {
   border-bottom: 2px solid rgb(0, 217, 177);
 }
 .small-box{
-  flex-shrink: 0;
   max-width: 90px;
-  min-width:90px;
 }
 </style>
