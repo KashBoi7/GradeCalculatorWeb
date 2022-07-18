@@ -31,53 +31,8 @@
                       <input @change='getLetter(index-1)' v-else class="small-box box " v-model.lazy="grade[index-1]" type="number" min="0" max="300">
                     </td>
                     <td scope="col">
-                      <select @change='getPercent(index-1)' v-if="index == 1" class="selectbox box" v-model="grade_letter[index-1]" >
-                        <option  :value="blank" selected>- -</option>
-                        <option>A+</option>
-                        <option>A</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B</option>
-                        <option>B-</option>
-                        <option>C+</option>
-                        <option>C</option>
-                        <option>C-</option>
-                        <option>D+</option>
-                        <option>D</option>
-                        <option>D-</option>
-                        <option>F</option>
-                      </select>
-                      <select @change='getPercent(index-1)' v-else-if="index == 2" class="selectbox box" v-model="grade_letter[index-1]">
-                        <option :value="blank" selected>- -</option>
-                        <option>A+</option>
-                        <option>A</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B</option>
-                        <option>B-</option>
-                        <option>C+</option>
-                        <option>C</option>
-                        <option>C-</option>
-                        <option>D+</option>
-                        <option>D</option>
-                        <option>D-</option>
-                        <option>F</option>
-                      </select>
-                      <select @change='getPercent(index-1)' v-else class="selectbox box" v-model="grade_letter[index-1]">
-                        <option :value='blank' selected >- -</option>
-                        <option>A+</option>
-                        <option>A</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B</option>
-                        <option>B-</option>
-                        <option>C+</option>
-                        <option>C</option>
-                        <option>C-</option>
-                        <option>D+</option>
-                        <option>D</option>
-                        <option>D-</option>
-                        <option>F</option>
+                      <select @change='getPercent(index-1)' class="selectbox box" v-model="grade_letter[index-1]" >
+                        <option  v-for="option in options" :value="option.value" :key='option'>{{ option.label }}</option>
                       </select>
                     </td>
                     <td scope="col">
@@ -85,7 +40,6 @@
                       <input v-else-if="index == 2" class="small-box box" v-model="weight[index-1]" placeholder="e.g. 20" type="number" min="0" max="300">
                       <input v-else class="small-box box" v-model="weight[index-1]" type="number" min="0" max="300">
                     </td>
-                    {{grade_letter[index-1]}}
                 </tr>
              </TransitionGroup>
            </tbody>
@@ -95,7 +49,7 @@
           <button @click="calculate" type="button" class="btn btn-outline-success">Calculate</button>
           <Transition name="bounce">
           <div v-show='correct' class="FinalGradeBox" id="Final">
-            <h4 id="letter" class="letter">Your Grade: {{FinalGradeLetter+" "+Math.round(FinalGrade)+'%'}}</h4>
+            <h4 id="letter" class="letter">Your Grade: {{FinalGradeLetter+" "+FinalGrade+'%'}}</h4>
           </div>
           </Transition>
           <Transition name="bounce">
@@ -117,7 +71,7 @@ export default {
   components: {},
   data () {
     return {
-      selected: ' ',
+      selected: null,
       correct: null,
       incorrect: null,
       x: 5,
@@ -128,7 +82,6 @@ export default {
       FinalGrade: null,
       FinalGradeLetter: null,
       grades: {
-        '- -': 0,
         'A+': 97,
         A: 93,
         'A-': 90,
@@ -143,13 +96,78 @@ export default {
         'D-': 60,
         F: 59
 
-      }
+      },
+      options: [
+        {
+          label: '- -',
+          value: '- -'
+        },
+        {
+          label: 'A+',
+          value: 'A+'
+        },
+        {
+          label: 'A',
+          value: 'A'
+        },
+        {
+          label: 'A-',
+          value: 'A-'
+        },
+        {
+          label: 'B+',
+          value: 'B+'
+        },
+        {
+          label: 'B',
+          value: 'B'
+        },
+        {
+          label: 'B-',
+          value: 'B-'
+        },
+        {
+          label: 'C+',
+          value: 'C+'
+        },
+        {
+          label: 'C',
+          value: 'C'
+        },
+        {
+          label: 'C-',
+          value: 'C-'
+        },
+        {
+          label: 'D+',
+          value: 'D+'
+        },
+        {
+          label: 'D',
+          value: 'D'
+        },
+        {
+          label: 'D-',
+          value: 'D-'
+        },
+        {
+          label: 'F',
+          value: 'F'
+        }
+      ]
+    }
+  },
+  created () {
+    for (let i = 0; i < this.x; i++) {
+      this.grade_letter[i] = this.options[0].label
     }
   },
   methods: {
+
     // adds rows
     increase () {
       this.x++
+      this.grade_letter[this.x - 1] = this.options[0].label
     },
     // removes rows
     decrease () {
@@ -161,6 +179,9 @@ export default {
         if (key === this.grade_letter[i]) {
           this.grade[i] = value
         }
+      }
+      if (this.grade_letter[i] === '- -') {
+        this.grade[i] = null
       }
     },
     // fills the grade_letter selectbox after you stype in the corresponding percentage
@@ -220,6 +241,7 @@ export default {
       } else {
         this.incorrect = false
         this.correct = true
+        this.FinalGrade = this.FinalGrade.toFixed(2)
       }
       if (this.FinalGrade >= 97) {
         this.FinalGradeLetter = 'A+'
@@ -322,7 +344,7 @@ section {
   }
 }
  .mid-box {
-    max-width: 530px;
+    max-width: 570px;
     height: fit-content;
     min-width: 490px;
     border-radius: 10px;
