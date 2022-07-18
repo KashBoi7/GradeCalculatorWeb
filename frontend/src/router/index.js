@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import GradeCalc from '@/components/GradeCalc.vue'
 const routes = [
   {
-    path: '/gradecalc',
+    path: '/',
     name: 'GradeCalc',
     component: GradeCalc
   }
