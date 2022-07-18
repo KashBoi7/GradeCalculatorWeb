@@ -81,6 +81,7 @@ export default {
       category: [],
       FinalGrade: null,
       FinalGradeLetter: null,
+      idk: null,
       grades: {
         'A+': 97,
         A: 93,
