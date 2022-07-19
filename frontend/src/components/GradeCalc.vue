@@ -1,3 +1,4 @@
+
 <template>
   <section class="home">
     <div class="mid-box">
@@ -63,7 +64,6 @@
     </div>
   </section>
 </template>
-
 <script>
 // @ is an alias to /src
 export default {
