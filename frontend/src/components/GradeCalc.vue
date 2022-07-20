@@ -163,6 +163,9 @@ export default {
       this.grade_letter[i] = this.options[0].label
     }
   },
+  mounted () {
+    window.addEventListener('scroll', this.updateScroll)
+  },
   methods: {
 
     // adds rows
@@ -306,14 +309,11 @@ export default {
 <style lang="scss" scoped>
 section {
   background-image: url("..\\assets\\5291450.jpg");
-  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   height: 100vh;
   padding-top:130px;
-    img {
-    height: 200vh;
-    width: 200vh;
-  }
   .hero-text {
     height: 100%;
     display: flex;
