@@ -1,6 +1,7 @@
 
 <template>
   <section class="home">
+  <div class="contain" id="contain">
     <div class="mid-box">
       <div>
         <div>
@@ -62,6 +63,7 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 </template>
 <script>
@@ -82,6 +84,7 @@ export default {
       FinalGrade: null,
       FinalGradeLetter: null,
       idk: null,
+      mobile: null,
       grades: {
         'A+': 97,
         A: 93,
@@ -162,9 +165,8 @@ export default {
     for (let i = 0; i < this.x; i++) {
       this.grade_letter[i] = this.options[0].label
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.updateScroll)
+    window.addEventListener('resize', this.checkScreen)
+    this.checkScreen()
   },
   methods: {
 
@@ -176,6 +178,16 @@ export default {
     // removes rows
     decrease () {
       this.x--
+    },
+    checkScreen () {
+      this.windowWidth = window.innerWidth
+      const box = document.getElementById('contain')
+      if (this.windowWidth <= 800) {
+        box.style.removeProperty('background-color')
+        box.style.width = '0%'
+      } else {
+        this.mobile = false
+      }
     },
     // fills the grade textbox after you select the corresponding letter
     getPercent (i) {
@@ -344,18 +356,30 @@ section {
     }
   }
 }
+.contain{
+  background-color: rgba(255,255,255,0.93);
+  width: 80%;
+  padding: 80px;
+    height: fit-content;
+    border-radius: 10px;
+    vertical-position: relative;
+    horizontal-position: absolute;
+    margin: auto;
+    align-items: center;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+}
  .mid-box {
     max-width: 570px;
     height: fit-content;
     min-width: 490px;
     border-radius: 10px;
-    background-color: rgba(250, 250, 250,0.8);
+    background-color: rgba(245, 245, 245,0.5);
     vertical-position: relative;
     horizontal-position: absolute;
     margin: auto;
     align-items: center;
     overflow: hide;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     tr{
       outline: 0;
     }
