@@ -60,6 +60,7 @@
   transition: transform .9s;
   &:hover{
     transform: scale(1.2);
+
   }
 }
 </style>

@@ -318,7 +318,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 section {
   background-image: url("..\\assets\\5291450.jpg");
   background-repeat: no-repeat;
