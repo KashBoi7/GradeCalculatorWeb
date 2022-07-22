@@ -2,6 +2,7 @@
 <template>
   <section class="home">
   <div class="contain" id="contain">
+    <h1 class="Heading">Grade Calculator</h1>
     <div class="mid-box">
       <div>
         <div>
@@ -63,6 +64,14 @@
         </div>
       </div>
     </div>
+    <router-link :to="{ name: 'FinalGrade'}" type="button" class="btn btn-link">See what you need to get on your final?</router-link> 
+    <h2 class="head">How to Use it?</h2>
+    <p class="text">Using the Grade calculator is quite simple. In the Category/Assignment column simply input a grading category (Participation, Homework, Classowrk, etc.). Then input your grade for that category. You can either input the
+    percentage or the letter. And lastly type in how much each category is weighted. Now just press calculate button and your grade will be displayed to you. Below is an example of how to use this calculator.
+    In Math, Bob get a grade of 87%/B+ on his homework, 95/A in participation and a 90/A- in quzzes/tests. Each category is weighted 30%, 10%, and 60% respectively. As shown below his overall grade
+    is 89.6% or a B+. </p>
+        <img src="..\\assets\\example.png">
+
     </div>
   </section>
 </template>
@@ -183,7 +192,7 @@ export default {
       this.windowWidth = window.innerWidth
       const box = document.getElementById('contain')
       if (this.windowWidth <= 800) {
-        box.style.removeProperty('background-color')
+        box.style.width = '100%'
         box.style.width = '0%'
       } else {
         this.mobile = false
@@ -319,10 +328,22 @@ export default {
 </script>
 
 <style lang="scss">
-section {
+.btn-link{
+  outline: 0;
+}
+.text{
+  text-align: left;
+}
+img{
+  text-align: left;
+}
+body{
   background-image: url("..\\assets\\5291450.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+}
+section {
   position: relative;
   height: 100vh;
   padding-top:130px;
@@ -356,9 +377,17 @@ section {
     }
   }
 }
+.Heading{
+  text-shadow: 0 2px rgba(0, 217, 177,0.9);
+}
+.head{
+  margin-top: 50px;
+  text-align:left;
+}
 .contain{
+  text-align:center;
   background-color: rgba(255,255,255,0.93);
-  width: 80%;
+  width: 70%;
   padding: 80px;
     height: fit-content;
     border-radius: 10px;
@@ -367,19 +396,22 @@ section {
     margin: auto;
     align-items: center;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    min-width: 550px;
 }
  .mid-box {
+
     max-width: 570px;
     height: fit-content;
     min-width: 490px;
     border-radius: 10px;
-    background-color: rgba(245, 245, 245,0.5);
+    background-color: transparent;
     vertical-position: relative;
     horizontal-position: absolute;
+    border: 1px solid rgb(0, 217, 177);
     margin: auto;
     align-items: center;
     overflow: hide;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    box-shadow:  0 0 20px rgba(0, 217, 177,0.3);
     tr{
       outline: 0;
     }
@@ -423,7 +455,7 @@ section {
 .FinalGradeBox {
   display: flex;
   border: 2px solid #00d084;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: transparent;
   justify-content: center;
   .letter {

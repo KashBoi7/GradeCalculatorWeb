@@ -1,8 +1,11 @@
 <template>
     <header :class="{'scrolled-nav': scrolledNav}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
         <nav>
             <div >
-                <h2 class="brandings">GradeHub</h2>
+                <router-link :to="{ name: 'HomeView'}"  class="brandings">gradeaxis</router-link>
             </div>
             <ul v-show="!mobile" class="navigations">
                 <li><router-link :to="{ name: 'GradeCalc'}" class="links">Grade Calculator</router-link></li>
@@ -109,11 +112,14 @@ header {
             }
         }
         .brandings {
-            display: flex;
-            align-items: center;
-            a {
-                width: 50px;
-                transition: .5 ease all;
+            font-size: 34px;
+            transition: .5 ease all;
+            padding-bottom: 4px;
+            font-weight: bold;
+            color: white;
+            font-family: 'Poiret One', cursive;
+            &:hover {
+                color: rgba(255, 255, 255);
             }
         }
         .navigations {
