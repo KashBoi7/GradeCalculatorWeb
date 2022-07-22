@@ -10,7 +10,7 @@
           <table class="table no" style="width:100%">
           <thead>
               <tr >
-                <th scope="col" class="white">Category/Assignment</th>
+                <th scope="col" width="37%" class="white">Category/Assignment</th>
                 <th scope="col">Grade(%)</th>
                 <th class="white" scope="col" >Grade Letter</th>
                 <th scope="col" >
@@ -192,10 +192,7 @@ export default {
       this.windowWidth = window.innerWidth
       const box = document.getElementById('contain')
       if (this.windowWidth <= 800) {
-        box.style.width = '100%'
-        box.style.width = '0%'
-      } else {
-        this.mobile = false
+      } else if(this.windowWidth > 800) {
       }
     },
     // fills the grade textbox after you select the corresponding letter
@@ -266,7 +263,7 @@ export default {
       } else {
         this.incorrect = false
         this.correct = true
-        this.FinalGrade = this.FinalGrade.toFixed(2)
+        this.FinalGrade = Math.round(100*this.FinalGrade)/100
       }
       if (this.FinalGrade >= 97) {
         this.FinalGradeLetter = 'A+'
@@ -335,7 +332,9 @@ export default {
   text-align: left;
 }
 img{
-  text-align: left;
+  text-align: center;
+  max-width: 100%;
+  max-height: 100%;
 }
 body{
   background-image: url("..\\assets\\5291450.jpg");
@@ -353,28 +352,6 @@ section {
     flex-direction: column;
     justify-content: center;
     color: #fff;
-    h4 {
-      text-transform: uppercase;
-      font-size: 22px;
-      padding-bottom: 4px;
-    }
-    h2 {
-      font-size: 50px;
-      @media (min-width: 550px) {
-        font-size: 80px;
-      }
-    }
-    hr:nth-child(2) {
-      max-width: 365px;
-      margin-bottom: 16px;
-    }
-    hr:nth-child(4) {
-      height: 6px;
-      background-color: #fff;
-      border: none;
-      max-width: 85px;
-      margin-top: 16px;
-    }
   }
 }
 .Heading{
@@ -387,14 +364,14 @@ section {
 .contain{
   text-align:center;
   background-color: rgba(255,255,255,0.93);
-  width: 70%;
+  max-width: 70%;
+  min-width: fit-content;
   padding: 80px;
     height: fit-content;
     border-radius: 10px;
     vertical-position: relative;
     horizontal-position: absolute;
     margin: auto;
-    align-items: center;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
     min-width: 550px;
 }
@@ -402,14 +379,11 @@ section {
 
     max-width: 570px;
     height: fit-content;
-    min-width: 490px;
+    min-width: 450px;
     border-radius: 10px;
     background-color: transparent;
-    vertical-position: relative;
-    horizontal-position: absolute;
     border: 1px solid rgb(0, 217, 177);
     margin: auto;
-    align-items: center;
     overflow: hide;
     box-shadow:  0 0 20px rgba(0, 217, 177,0.3);
     tr{
@@ -417,8 +391,7 @@ section {
     }
     .table {
       border: none;
-      table-layout:auto;
-      width:150px;
+      table-layout:fixed;
     }
     .btn-outline-dark{
       margin-right: 10px;
@@ -492,6 +465,7 @@ section {
   border-bottom: 2px solid black;
   height: 40px;
   max-width: 100%;
+  min-width: 100%;
   outline: 0;
   font-size: 16px;
 }
@@ -508,6 +482,6 @@ section {
   max-width: 100%;
 }
 .selectbox{
-  width: 95%;
+  width: 75%;
 }
 </style>

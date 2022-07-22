@@ -4,6 +4,8 @@
     <div class="hero">
       <div class="container">
         <div class="mid">
+          <h1>GradeAxis</h1>
+          <hr>
           <h2>Keep Track of Your Grades with Ease.</h2>
         </div>
       </div>
@@ -26,13 +28,13 @@
   background-size: cover;
   padding-top: 270px;
   padding-bottom: 270px;
+  align-items: center;
 }
 .container {
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  align-items: center;
 }
 .mid {
   align-items: center;
