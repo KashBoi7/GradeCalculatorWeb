@@ -66,10 +66,7 @@
     </div>
     <router-link :to="{ name: 'FinalGrade'}" type="button" class="btn btn-link">See what you need to get on your final?</router-link> 
     <h2 class="head">How to Use it?</h2>
-    <p class="text">Using the Grade calculator is quite simple. In the Category/Assignment column simply input a grading category (Participation, Homework, Classowrk, etc.). Then input your grade for that category. You can either input the
-    percentage or the letter. And lastly type in how much each category is weighted. Now just press calculate button and your grade will be displayed to you. Below is an example of how to use this calculator.
-    In Math, Bob get a grade of 87%/B+ on his homework, 95/A in participation and a 90/A- in quzzes/tests. Each category is weighted 30%, 10%, and 60% respectively. As shown below his overall grade
-    is 89.6% or a B+. </p>
+    <p class="text">Using the Grade calculator is quite simple. In the Category/Assignment column simply input a grading category (Participation, Homework, Classwork, etc.). Then input your grade for that category. You can either input the percentage of the letter. And lastly, type in how much each category is weighted. Now just press calculate button and your grade will be displayed to you. Below is an example of how to use this calculator. In Math, Bob gets a grade of 87%/B+ on his homework, 95/A in participation, and a 90/A- in quizzes/tests. Each category is weighted at 30%, 10%, and 60% respectively. As shown below, his overall grade is 89.6%, or a B+. </p>
         <img src="..\\assets\\example.png">
 
     </div>
