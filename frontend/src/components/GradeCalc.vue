@@ -73,10 +73,12 @@
     <p class="text">The AF grading system was invented sometime in the 1930s then became popular during the 40s. To this day it is still the main way of grading
     in most high schools and middle schools. The grade calculator uses a simple formula to calculate your grade. You can use this formula by yourself. To calculate your total grade simply multiply you grade percentage for a certain category times its weight. 
     Do that for all of your categories then add their products up to find your total grade.</p>
+    <h4 style="font-style: italic">Weighted grade = w1×g1+ w2×g2+ w3×g3+...</h4>
     <h2 class="head">Additional Applications</h2>
     <p class="text">Not only can this be used as a grade calculator but you can also use it to find your average grade. All you need to do is name your courses and their corresponding grades. 
     For the weigtht column make sure to weight all of your courses evenly by inputting the same number on each row. To add more courses hit the 'add row' button.
     Now simply press the calculate button to get your average grade. An example is shown below.  </p>
+    <img src="..\\assets\\example2.png">
     </div>
   </div>
 </template>

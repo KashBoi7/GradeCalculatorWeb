@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div >
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
     <div class="hero">
         <div class="mid">
@@ -24,8 +24,8 @@
   background-image: url("..\\assets\\5291450.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 220px;
-  padding-bottom: 220px;
+  padding-top: 200px;
+  padding-bottom: 200px;
   text-align: center;
 }
 .container {
@@ -39,7 +39,7 @@
   width: 50%;
   align-items: center;
   padding: 25px 69px;
-
+  color: black;
   width: fit-content;
   height: fit-content;
 
@@ -49,8 +49,8 @@
 }
 .GradeCalc {
   background: rgb(242, 247, 242);
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 .containers {
   max-width: 960px;
