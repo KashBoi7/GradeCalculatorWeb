@@ -69,12 +69,14 @@
     <p class="text">Using the Grade calculator is quite simple. In the Category/Assignment column simply input a grading category (Participation, Homework, Classwork, etc.). Then input your grade for that category. You can either input the percentage of the letter. 
     And lastly, type in how much each category is weighted. If your graded based on more than five categories just press the 'Add Row' button to create additonal rows. Now just press calculate button and your grade will be displayed to you. Below is an example of how to use this calculator. In Math, Bob gets a grade of 87%/B+ on his homework, 95/A in participation, and a 90/A- in quizzes/tests. Each category is weighted at 30%, 10%, and 60% respectively. As shown below, his overall grade is 89.6%, or a B+. </p>
         <img src="..\\assets\\example.png">
+            <h2 class="head">Extra Info</h2>
+    <p class="text">The AF grading system was invented sometime in the 1930s then became popular during the 40s. To this day it is still the main way of grading
+    in most high schools and middle schools. The grade calculator uses a simple formula to calculate your grade. You can use this formula by yourself. To calculate your total grade simply multiply you grade percentage for a certain category times its weight. 
+    Do that for all of your categories then add their products up to find your total grade.</p>
     <h2 class="head">Additional Applications</h2>
     <p class="text">Not only can this be used as a grade calculator but you can also use it to find your average grade. All you need to do is name your courses and their corresponding grades. 
     For the weigtht column make sure to weight all of your courses evenly by inputting the same number on each row. To add more courses hit the 'add row' button.
     Now simply press the calculate button to get your average grade. An example is shown below.  </p>
-    <h2 class="head">Extra Info</h2>
-    <p class="text">The grade calculator uses a simple formula to calculate your grade. You can use this formula by yourself.</p>
     </div>
   </div>
 </template>
@@ -194,8 +196,8 @@ export default {
     checkScreen () {
       this.windowWidth = window.innerWidth
       const box = document.getElementById('contain')
-      if (this.windowWidth <= 800) {
-      } else if(this.windowWidth > 800) {
+      if (this.windowWidth > 2560) {
+        box.style.maxHeight = '1746px'
       }
     },
     // fills the grade textbox after you select the corresponding letter
@@ -367,7 +369,7 @@ section {
 .contain{
   text-align:center;
   background-color: rgba(255,255,255,0.93);
-  max-width: 70%;
+  max-width: 1200px;
   min-width: fit-content;
    padding: 2%;
   min-padding: 10px;
@@ -377,13 +379,13 @@ section {
     horizontal-position: absolute;
     margin: auto;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
-    min-width: 550px;
+    min-width: 0;
 }
  .mid-box {
 
     max-width: 570px;
     height: fit-content;
-    min-width: fit-content;
+    min-width: 0;
     border-radius: 10px;
     background-color: transparent;
     border: 1px solid rgb(0, 217, 177);
