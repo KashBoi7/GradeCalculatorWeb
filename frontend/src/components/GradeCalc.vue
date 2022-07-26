@@ -1,6 +1,6 @@
 
 <template>
-  <section class="home">
+  <div class="home">
   <div class="contain" id="contain">
     <h1 class="Heading">Grade Calculator</h1>
     <div class="mid-box">
@@ -66,11 +66,17 @@
     </div>
     <router-link :to="{ name: 'FinalGrade'}" type="button" class="btn btn-link">See what you need to get on your final?</router-link> 
     <h2 class="head">How to Use it?</h2>
-    <p class="text">Using the Grade calculator is quite simple. In the Category/Assignment column simply input a grading category (Participation, Homework, Classwork, etc.). Then input your grade for that category. You can either input the percentage of the letter. And lastly, type in how much each category is weighted. Now just press calculate button and your grade will be displayed to you. Below is an example of how to use this calculator. In Math, Bob gets a grade of 87%/B+ on his homework, 95/A in participation, and a 90/A- in quizzes/tests. Each category is weighted at 30%, 10%, and 60% respectively. As shown below, his overall grade is 89.6%, or a B+. </p>
+    <p class="text">Using the Grade calculator is quite simple. In the Category/Assignment column simply input a grading category (Participation, Homework, Classwork, etc.). Then input your grade for that category. You can either input the percentage of the letter. 
+    And lastly, type in how much each category is weighted. If your graded based on more than five categories just press the 'Add Row' button to create additonal rows. Now just press calculate button and your grade will be displayed to you. Below is an example of how to use this calculator. In Math, Bob gets a grade of 87%/B+ on his homework, 95/A in participation, and a 90/A- in quizzes/tests. Each category is weighted at 30%, 10%, and 60% respectively. As shown below, his overall grade is 89.6%, or a B+. </p>
         <img src="..\\assets\\example.png">
-
+    <h2 class="head">Additional Applications</h2>
+    <p class="text">Not only can this be used as a grade calculator but you can also use it to find your average grade. All you need to do is name your courses and their corresponding grades. 
+    For the weigtht column make sure to weight all of your courses evenly by inputting the same number on each row. To add more courses hit the 'add row' button.
+    Now simply press the calculate button to get your average grade. An example is shown below.  </p>
+    <h2 class="head">Extra Info</h2>
+    <p class="text">The grade calculator uses a simple formula to calculate your grade. You can use this formula by yourself.</p>
     </div>
-  </section>
+  </div>
 </template>
 <script>
 // @ is an alias to /src
@@ -363,7 +369,8 @@ section {
   background-color: rgba(255,255,255,0.93);
   max-width: 70%;
   min-width: fit-content;
-  padding: 80px;
+   padding: 2%;
+  min-padding: 10px;
     height: fit-content;
     border-radius: 10px;
     vertical-position: relative;
@@ -376,12 +383,11 @@ section {
 
     max-width: 570px;
     height: fit-content;
-    min-width: 450px;
+    min-width: fit-content;
     border-radius: 10px;
     background-color: transparent;
     border: 1px solid rgb(0, 217, 177);
     margin: auto;
-    overflow: hide;
     box-shadow:  0 0 20px rgba(0, 217, 177,0.3);
     tr{
       outline: 0;
@@ -452,6 +458,11 @@ section {
   100% {
     transform: scale(1);
   }
+}
+.home{
+  padding-top:130px;
+  padding-bottom:130px;
+  width:100%;
 }
 .box{
   display: flex;

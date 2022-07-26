@@ -2,13 +2,11 @@
   <div class="home">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
     <div class="hero">
-      <div class="container">
         <div class="mid">
           <h1>GradeAxis</h1>
           <hr>
           <h2>Keep Track of Your Grades with Ease.</h2>
         </div>
-      </div>
     </div>
     <div class="GradeCalc">
       <div class="containers">
@@ -26,9 +24,9 @@
   background-image: url("..\\assets\\5291450.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 270px;
-  padding-bottom: 270px;
-  align-items: center;
+  padding-top: 220px;
+  padding-bottom: 220px;
+  text-align: center;
 }
 .container {
   max-width: 960px;
@@ -37,10 +35,11 @@
   align-items: center;
 }
 .mid {
+  margin: auto;
+  width: 50%;
   align-items: center;
   padding: 25px 69px;
 
-  position: absolute;
   width: fit-content;
   height: fit-content;
 
