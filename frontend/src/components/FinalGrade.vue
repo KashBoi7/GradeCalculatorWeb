@@ -12,6 +12,7 @@
             <h5>My desired overall grade:</h5>
             <input v-model="desired" required type="number" class="sm" min="0" max="150">
             <button @click='Calculate' required type="button" class="btn btn-outline-success">Calculate</button>
+            {{required}}
             </form>
           </div>
         </div>
@@ -61,12 +62,15 @@
     return {
       current: null,
       weight: null,
-      desired: null
+      desired: null,
+      required: null,
+      finalWeight: null
     }
   },
   methods: {
     Calculate() {
-        
+      this.finalWeight = this.weight/100
+        this.required = (this.desired - (this.current*(1 - this.finalWeight)))/this.finalWeight
     }
   }
 }

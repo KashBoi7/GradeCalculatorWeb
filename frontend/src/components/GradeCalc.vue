@@ -362,7 +362,6 @@ section {
   }
 }
 .Heading{
-  text-shadow: 0 2px rgba(0, 217, 177,0.9);
 }
 .head{
   margin-top: 50px;
