@@ -1,6 +1,6 @@
 <template>
     <section class="Final">
-        <div class="container"></div>
+        <h1>Coming Soon</h1>
     </section>
 </template>
 <style lang='scss'>

@@ -16,6 +16,14 @@
         <router-link :to="{ name: 'GradeCalc'}" class="btn btn-success">Use It</router-link>
       </div>
     </div>
+     <div class="FinalGrade">
+      <div class="containers-right">
+        <h2>Final Grade</h2>
+        <hr>
+        <p>Calculate what you need to get on your final to get your desired grade.</p>
+        <router-link :to="{ name: 'FinalGrade'}" class="btn btn-success">Use It</router-link>
+      </div>
+    </div>
   </div>
 </template>
 <style lang="scss">
@@ -34,6 +42,7 @@
   margin-right: auto;
   align-items: center;
 }
+
 .mid {
   margin: auto;
   width: 50%;
@@ -48,12 +57,22 @@
   border-radius: 5px;
 }
 .GradeCalc {
-  background: rgb(242, 247, 242);
+  background: rgb(195, 235, 218);
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+.FinalGrade {
+  background: rgb(249, 255, 230);
   padding-top: 120px;
   padding-bottom: 120px;
 }
 .containers {
   max-width: 960px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.containers-right {
+  text-align: right;
   padding-left: 1rem;
   padding-right: 1rem;
 }

@@ -433,7 +433,7 @@ section {
 }
 .FinalGradeBox {
   display: flex;
-  border: 2px solid #00d084;
+  border: 2px solid black;
   border-radius: 10px;
   background-color: transparent;
   justify-content: center;

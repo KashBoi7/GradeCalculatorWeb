@@ -19,9 +19,9 @@
             <transition name="mobile-nav" class='dropdown-nav'>
                 <ul v-show="mobileNav" class="navigations">
                     <li><router-link :to="{ name: 'GradeCalc'}" class="links">Grade Calculator</router-link></li>
-                    <li><router-link :to="{ name: 'FinalGrade'}" class="links">GPA Calculator</router-link></li>
+                    <li><router-link :to="{ name: 'ComingSoon'}" class="links">GPA Calculator</router-link></li>
                     <li><router-link :to="{ name: 'FinalGrade'}" class="links">Final Grade</router-link></li>
-                    <li><router-link :to="{ name: 'FinalGrade'}" class="links">Grade Tracker</router-link></li>
+                    <li><router-link :to="{ name: 'ComingSoon'}" class="links">Grade Tracker</router-link></li>
                 </ul>
             </transition>
         </nav>
