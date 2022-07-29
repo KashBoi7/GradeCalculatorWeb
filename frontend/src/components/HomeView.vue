@@ -10,7 +10,7 @@
     </div>
     <div class="GradeCalc">
       <div class="containers">
-        <h2>Grade Calculator</h2>
+        <h1>Grade Calculator</h1>
         <hr>
         <p>Our grade calculator helps you calculate your total grade. Use it to know what categories to increase to get your desired grade.</p>
         <router-link :to="{ name: 'GradeCalc'}" class="btn btn-success">Use It</router-link>
@@ -18,7 +18,7 @@
     </div>
      <div class="FinalGrade">
       <div class="containers-right">
-        <h2>Final Grade</h2>
+        <h1>Final Grade</h1>
         <hr>
         <p>Calculate what you need to get on your final to get your desired grade.</p>
         <router-link :to="{ name: 'FinalGrade'}" class="btn btn-success">Use It</router-link>
@@ -57,12 +57,12 @@
   border-radius: 5px;
 }
 .GradeCalc {
-  background: rgb(195, 235, 218);
+  background:  rgba(0, 217, 177,0.4);
   padding-top: 120px;
   padding-bottom: 120px;
 }
 .FinalGrade {
-  background: rgb(249, 255, 230);
+  background: rgb(69, 143, 255,0.4);
   padding-top: 120px;
   padding-bottom: 120px;
 }
@@ -70,11 +70,20 @@
   max-width: 960px;
   padding-left: 1rem;
   padding-right: 1rem;
+  border-radius: 15px;
+  margin: auto;
+    color: black;
+  text-align: center;
+
+
 }
 .containers-right {
-  text-align: right;
+  text-align: center;
+  max-width: 960px;
   padding-left: 1rem;
   padding-right: 1rem;
+  margin: auto;
+  color: black;
 }
 .btn-success {
   transition: transform .9s;

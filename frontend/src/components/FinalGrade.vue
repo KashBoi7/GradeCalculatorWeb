@@ -18,8 +18,10 @@
               <h4 class="req">You need to get at least {{required}}% on your final</h4>
             </div>
           </Transition>
-          <h2></h2>
           </div>
+          <h2 class="head">How to use it?</h2>
+          <p class="text">In the first blank simply type your current grade. Then in the second blank type in what grade you want to have after taking your final exam.
+          Lastly in the third blank type in how much your final exam is weighted in percent. Now simply press the 'calculate' button.</p>
         </div>
     </section>
 </template>
