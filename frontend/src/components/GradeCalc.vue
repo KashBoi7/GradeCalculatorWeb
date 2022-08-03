@@ -350,9 +350,6 @@ body{
   background-attachment: fixed;
 }
 section {
-  position: relative;
-  height: 100vh;
-  padding-top:130px;
   .hero-text {
     height: 100%;
     display: flex;

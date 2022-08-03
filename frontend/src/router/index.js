@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import GradeCalc from '@/components/GradeCalc.vue'
 import FinalGrade from '@/components/FinalGrade.vue'
 import HomeView from '@/components/HomeView.vue'
+import ComingSoon from '@/components/ComingSoon.vue'
 const routes = [
   {
     path: '/gradecalc',
@@ -17,6 +18,11 @@ const routes = [
     path: '/',
     name: 'HomeView',
     component: HomeView
+  },
+  {
+    path: '/comingsoon',
+    name: 'ComingSoon',
+    component: ComingSoon
   }
 ]
 
