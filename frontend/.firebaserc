@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "default": "gradehub-2cfd8"
+  }
+}

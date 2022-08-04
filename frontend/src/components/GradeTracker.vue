@@ -4,9 +4,9 @@ import Chart from 'chart.js/auto'
 const grades = ref([])
 const gradeChartEl = ref(null)
 const gradeChart = shallowRef(null)
-const gradeInput = ref(0)
+const gradeInput = ref(100)
 const currentGrade = computed(() => {
-	return grades.value.sort((a, b) => b.date - a.date)[0] || { grade: 0 }
+	return grades.value.sort((a, b) => b.date - a.date)[0] || { grade: 100 }
 })
 const addgrade = () => {
 	grades.value.push({
@@ -20,11 +20,9 @@ watch(grades, (newgrades) => {
 		gradeChart.value.data.labels = ws
 			.sort((a, b) => a.date - b.date)
 			.map(grade => new Date(grade.date).toLocaleDateString() )
-			.slice(-7)
 		gradeChart.value.data.datasets[0].data = ws
 			.sort((a, b) => a.date - b.date)
 			.map(grade => grade.grade)
-			.slice(-7)
 		gradeChart.value.update()
 		return
 	}
@@ -41,8 +39,8 @@ watch(grades, (newgrades) => {
 						data: ws
 							.sort((a, b) => a.date - b.date)
 							.map(grade => grade.grade),
-						backgroundColor: 'rgba(255, 105, 180, 0.2)',
-						borderColor: 'rgba(255, 105, 180, 1)',
+						backgroundColor: 'rgba(0, 217, 177,0.2)',
+						borderColor: 'rgba(0, 217, 177,1)',
 						borderWidth: 1,
 						fill: true
 					}
@@ -58,16 +56,20 @@ watch(grades, (newgrades) => {
 </script>
 
 <template>
+    <div class="Final">
 	<main>
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
 
-		<h1>grade Tracker</h1>
+    <div class="contain">
+    <div class='mid-box' style="padding:10px;">
+		<h1>Grade Tracker</h1>
 
 		<div class="current">
-			<span>{{ currentGrade.grade }}</span>
-			<small>Current grade (kg)</small>
+			<span>{{ currentGrade.grade }}%</span>
+			<small>Current grade (%)</small>
 		</div>
 
-		<form @submit.prevent="addgrade">
+		<form class="form" @submit.prevent="addgrade">
 			<input 
 				type="number"
 				step="0.1"
@@ -89,10 +91,10 @@ watch(grades, (newgrades) => {
 			</div>
 
 			<div class="grade-history">
-				<h2>grade History</h2>
+				<h2>Grade History</h2>
 				<ul>
 					<li v-for="grade in grades">
-						<span>{{ grade.grade }}kg</span>
+						<span>{{ grade.grade }}%</span>
 						<small>
 							{{ new Date(grade.date).toLocaleDateString() }}
 						</small>
@@ -101,49 +103,14 @@ watch(grades, (newgrades) => {
 			</div>
 
 		</div>
-
+    </div>
+    </div>
 	</main>
+    </div>
 </template>
 
 <style>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'montserrat', sans-serif;
-}
-body {
-	background-color: #eee;
-}
-main {
-	padding: 1.5rem;
-}
-h1 {
-	font-size: 2em;
-	text-align: center;
-	margin-bottom: 2rem;
-}
-h2 {
-	margin-bottom: 1rem;
-	color: #888;
-	font-grade: 400;
-}
-.current {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 200px;
-	height: 200px;
-	
-	text-align: center;
-	background-color: white;
-	border-radius: 999px;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	border: 5px solid hwb(330 41% 0%);
-	
-	margin: 0 auto 2rem;
-}
+
 .current span {
 	display: block;
 	font-size: 2em;
@@ -154,7 +121,7 @@ h2 {
 	color: #888;
 	font-style: italic;
 }
-form {
+.form {
 	display: flex;
 	margin-bottom: 2rem;
 	border: 1px solid #AAA;
@@ -162,12 +129,12 @@ form {
 	overflow: hidden;
 	transition: 200ms linear;
 }
-form:focus-within,
-form:hover {
-	border-color: hotpink;
+.form:focus-within,
+.form:hover {
+	border-color: rgba(0, 217, 177,1);
 	border-width: 2px;
 }
-form input[type="number"] {
+.form input[type="number"] {
 	appearance: none;
 	outline: none;
 	border: none;
@@ -176,12 +143,12 @@ form input[type="number"] {
 	padding: 1rem 1.5rem;
 	font-size: 1.25rem;
 }
-form input[type="submit"] {
+.form input[type="submit"] {
 	appearance: none;
 	outline: none;
 	border: none;
 	cursor: pointer;
-	background-color: hotpink;
+	background-color: rgba(0, 217, 177,1);
 	padding: 0.5rem 1rem;
 	color: white;
 	font-size: 1.25rem;
@@ -189,10 +156,10 @@ form input[type="submit"] {
 	transition: 200ms linear;
 	border-left: 3px solid transparent;
 }
-form input[type="submit"]:hover {
+.form input[type="submit"]:hover {
 	background-color: white;
-	color: hotpink;
-	border-left-color: hotpink;
+	color: rgba(0, 217, 177,1);
+	border-left-color: rgba(0, 217, 177,1);
 }
 .canvas-box {
 	width: 100%;
