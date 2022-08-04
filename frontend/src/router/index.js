@@ -3,6 +3,7 @@ import GradeCalc from '@/components/GradeCalc.vue'
 import FinalGrade from '@/components/FinalGrade.vue'
 import HomeView from '@/components/HomeView.vue'
 import ComingSoon from '@/components/ComingSoon.vue'
+import GradeTracker from '@/components/GradeTracker.vue'
 const routes = [
   {
     path: '/gradecalc',
@@ -23,6 +24,11 @@ const routes = [
     path: '/comingsoon',
     name: 'ComingSoon',
     component: ComingSoon
+  },
+  {
+    path: '/gradetracker',
+    name: 'GradeTracker',
+    component: GradeTracker
   }
 ]
 
