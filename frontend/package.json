@@ -12,6 +12,7 @@
     "bootstrap-vue": "^2.21.2",
     "chart.js": "^3.9.1",
     "core-js": "^3.8.3",
+    "firebase": "^9.9.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"

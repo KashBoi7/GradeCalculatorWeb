@@ -1,5 +1,7 @@
 <script setup>
-import { ref, shallowRef, computed, watch, nextTick } from 'vue'
+import db from '@/firebaseinit'
+import { collection, addDoc } from "firebase/firestore"; 
+import { ref, shallowRef, computed, watch, nextTick, reactive, onMounted } from 'vue'
 import Chart from 'chart.js/auto'
 const grades = ref([])
 const gradeChartEl = ref(null)
