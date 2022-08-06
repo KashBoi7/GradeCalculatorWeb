@@ -1,6 +1,6 @@
 <script setup>
-import db from '@/firebaseinit'
-import { collection, addDoc } from "firebase/firestore"; 
+import { getFirestore, collection, addDoc, setDoc, doc, Timestamp } from 'firebase/firestore';
+import {db, gradeDoc, addGrade} from '@/firebaseinit'
 import { ref, shallowRef, computed, watch, nextTick, reactive, onMounted } from 'vue'
 import Chart from 'chart.js/auto'
 const grades = ref([])
@@ -26,6 +26,10 @@ watch(grades, (newgrades) => {
 			.sort((a, b) => a.date - b.date)
 			.map(grade => grade.grade)
 		gradeChart.value.update()
+			setDoc(gradeDoc,{
+    	grade: grades.value,
+		date: new Date().getTime()
+    })
 		return
 	}
 	nextTick(() => {
@@ -75,7 +79,9 @@ watch(grades, (newgrades) => {
 			<input 
 				type="number"
 				step="0.1"
-				v-model="gradeInput" />
+				v-model="gradeInput" 
+				max="200"
+				min="0"/>
 
 			<input	
 				type="submit"

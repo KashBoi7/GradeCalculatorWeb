@@ -15,7 +15,7 @@ const firebaseConfig = ({
 });
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app);
-export const gradeDoc = doc(db, 'grades/jihjihi')
+export const gradeDoc = doc(db, 'grades/jihr3ihi')
 export function addGrade() {
     const docData = {
     stringExample: "Hello world!",
