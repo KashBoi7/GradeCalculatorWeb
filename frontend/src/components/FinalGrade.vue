@@ -69,7 +69,7 @@
 </style>
 <script>
 import { getFirestore, collection, addDoc, setDoc, doc } from 'firebase/firestore';
-import {db, gradeDoc} from '@/firebaseinit'
+import {db, gradeDoc, addGrade} from '@/firebaseinit'
   export default {
   name: 'FinalGrade',
   data () {
@@ -92,17 +92,14 @@ import {db, gradeDoc} from '@/firebaseinit'
         this.required = (this.desired - (this.current*(1 - this.finalWeight)))/this.finalWeight
         this.required = Math.round(100*this.required)/100
       }
-      addGrade()
-    },
-    addGrade() {
-            const docData = {
-    stringExample: "Hello world!",
-    booleanExample: true,
-    numberExample: 3.14159265,
-    arrayExample: [5, true, "hello"],
-    nullExample: null,
-}
-  setDoc(gradeDoc, docData)
+      const docData = {
+      stringExample: "Hello world!",
+      booleanExample: true,
+      numberExample: 3.14159265,
+      arrayExample: [5, true, "hello"],
+      nullExample: null,
+    }
+    setDoc(gradeDoc,docData)
     }
   }
 }

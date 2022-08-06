@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { getFirestore, doc } from 'firebase/firestore';
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -13,7 +13,17 @@ const firebaseConfig = ({
   appId: "1:664890377818:web:e7b6eed9f14ffc3c9aba63",
   measurementId: "G-C80LP5ZY8Q"
 });
-export const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 const db = getFirestore(app);
-export const gradeDoc = doc(db, 'grades/ffsdfds')
+export const gradeDoc = doc(db, 'grades/jihjihi')
+export function addGrade() {
+    const docData = {
+    stringExample: "Hello world!",
+    booleanExample: true,
+    numberExample: 3.14159265,
+    arrayExample: [5, true, "hello"],
+    nullExample: null,
+  }
+  setDoc(gradeDoc,docData)
+}
 export default (db);
