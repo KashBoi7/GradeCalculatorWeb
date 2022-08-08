@@ -32,7 +32,7 @@ watch(grades, (newgrades) => {
     })
 		return
 	}
-	nextTick(() => {
+			nextTick(() => {
 		gradeChart.value = new Chart(gradeChartEl.value.getContext('2d'), {
 			type: 'line',
 			data: {
@@ -59,6 +59,14 @@ watch(grades, (newgrades) => {
 		})
 	})
 }, { deep: true })
+		grades.value.push({
+			grade: 85,
+			date: new Date().getTime()
+		})
+		grades.value.push({
+			grade: 95,
+			date: new Date().getTime()
+		})
 </script>
 
 <template>
@@ -118,7 +126,6 @@ watch(grades, (newgrades) => {
 </template>
 
 <style>
-
 .current span {
 	display: block;
 	font-size: 2em;
