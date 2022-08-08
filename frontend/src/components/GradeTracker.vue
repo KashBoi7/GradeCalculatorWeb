@@ -1,6 +1,6 @@
 <script setup>
-import { getFirestore, collection, addDoc, setDoc, doc, Timestamp } from 'firebase/firestore';
-import {db, gradeDoc, addGrade} from '@/firebaseinit'
+import { getFirestore, collection, addDoc, setDoc, doc, Timestamp, getDoc, getDocs } from 'firebase/firestore';
+import {db, gradeDoc, addGrade, idk} from '@/firebaseinit'
 import { ref, shallowRef, computed, watch, nextTick, reactive, onMounted } from 'vue'
 import Chart from 'chart.js/auto'
 const grades = ref([])
@@ -15,6 +15,7 @@ const addgrade = () => {
 		grade: gradeInput.value,
 		date: new Date().getTime()
 	})
+	idk()
 }
 watch(grades, (newgrades) => {
 	const ws = [...newgrades]
@@ -59,14 +60,22 @@ watch(grades, (newgrades) => {
 		})
 	})
 }, { deep: true })
+	async function GetAllDataOnce(){
+		const querySnapshot = await getDocs(collection('db',"grades"))
+		console.log(docSnap.data())
+	}
 		grades.value.push({
 			grade: 85,
 			date: new Date().getTime()
 		})
 		grades.value.push({
 			grade: 95,
-			date: new Date().getTime()
+			date: new Date().getTime()+0.1
 		})
+		setDoc(gradeDoc,{
+    	grade: grades.value,
+    })	
+
 </script>
 
 <template>

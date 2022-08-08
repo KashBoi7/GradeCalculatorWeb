@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -15,15 +15,14 @@ const firebaseConfig = ({
 });
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app);
-export const gradeDoc = doc(db, 'grades/jihr3ihi')
-export function addGrade() {
-    const docData = {
-    stringExample: "Hello world!",
-    booleanExample: true,
-    numberExample: 3.14159265,
-    arrayExample: [5, true, "hello"],
-    nullExample: null,
+export const gradeDoc = doc(db, 'grades', 'jihr3ihi')
+export async function idk() {
+  const docSnap = await getDoc(gradeDoc);
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
   }
-  setDoc(gradeDoc,docData)
 }
 export default (db);
