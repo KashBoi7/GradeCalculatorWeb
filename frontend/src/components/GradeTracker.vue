@@ -15,7 +15,6 @@ const addgrade = () => {
 		grade: gradeInput.value,
 		date: new Date().getTime()
 	})
-	idk()
 }
 watch(grades, (newgrades) => {
 	const ws = [...newgrades]
@@ -29,7 +28,6 @@ watch(grades, (newgrades) => {
 		gradeChart.value.update()
 			setDoc(gradeDoc,{
     	grade: grades.value,
-		date: new Date().getTime()
     })
 		return
 	}
@@ -60,10 +58,6 @@ watch(grades, (newgrades) => {
 		})
 	})
 }, { deep: true })
-	async function GetAllDataOnce(){
-		const querySnapshot = await getDocs(collection('db',"grades"))
-		console.log(docSnap.data())
-	}
 		grades.value.push({
 			grade: 85,
 			date: new Date().getTime()
@@ -75,6 +69,7 @@ watch(grades, (newgrades) => {
 		setDoc(gradeDoc,{
     	grade: grades.value,
     })	
+	idk()
 
 </script>
 
@@ -91,7 +86,7 @@ watch(grades, (newgrades) => {
 			<span>{{ currentGrade.grade }}%</span>
 			<small>Current grade (%)</small>
 		</div>
-
+		<h1>{{idk()}}</h1>
 		<form class="form" @submit.prevent="addgrade">
 			<input 
 				type="number"
@@ -102,7 +97,7 @@ watch(grades, (newgrades) => {
 
 			<input	
 				type="submit"
-				value="Add grade" />
+				value="Add grade" /> 
 		</form>
 
 		<div v-if="grades && grades.length > 0">

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, query } from 'firebase/firestore';
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -15,14 +15,42 @@ const firebaseConfig = ({
 });
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app);
+class City {
+    constructor (name, state, country ) {
+        this.name = name;
+        this.state = state;
+        this.country = country;
+    }
+    toString() {
+        return this.name + ', ' + this.state + ', ' + this.country;
+    }
+}
+
+// Firestore data converter
+export const cityConverter = {
+    toFirestore: (city) => {
+        return {
+            name: city.name,
+            state: city.state,
+            country: city.country
+            };
+    },
+    fromFirestore: (snapshot, options) => {
+        const data = snapshot.data(options);
+        return new City(data.name, data.state, data.country);
+    }
+};
 export const gradeDoc = doc(db, 'grades', 'jihr3ihi')
 export async function idk() {
   const docSnap = await getDoc(gradeDoc);
+  const q = query(gradeDoc);
   if (docSnap.exists()) {
     console.log("Document data:", docSnap.data());
+    console.log(q)
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");
   }
+  return docSnap.data()
 }
 export default (db);
