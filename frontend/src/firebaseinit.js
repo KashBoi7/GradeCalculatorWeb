@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc, query } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, query, where } from 'firebase/firestore';
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -43,14 +43,8 @@ export const cityConverter = {
 export const gradeDoc = doc(db, 'grades', 'jihr3ihi')
 export async function idk() {
   const docSnap = await getDoc(gradeDoc);
-  const q = query(gradeDoc);
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-    console.log(q)
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-  }
-  return docSnap.data()
+const data = docSnap.data()
+  var list = data.grade
+  return list
 }
 export default (db);
