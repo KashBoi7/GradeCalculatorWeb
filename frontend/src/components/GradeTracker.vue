@@ -1,6 +1,6 @@
 <script setup>
 import { getFirestore, collection, addDoc, setDoc, doc, Timestamp, getDoc, getDocs } from 'firebase/firestore';
-import {db, gradeDoc, idk} from '@/firebaseinit'
+import {db, gradeDoc} from '@/firebaseinit'
 import { ref, shallowRef, computed, watch, nextTick, reactive, onMounted } from 'vue'
 import Chart from 'chart.js/auto'
 const grades = ref([])
@@ -15,7 +15,6 @@ const addgrade = () => {
 		grade: gradeInput.value,
 		date: new Date().getTime()
 	})
-	idk()
 }
 watch(grades, (newgrades) => {
 	const ws = [...newgrades]
@@ -59,17 +58,21 @@ watch(grades, (newgrades) => {
 		})
 	})
 }, { deep: true })
+  async function idk() {
+  const docSnap = await getDoc(gradeDoc);
+  const data = docSnap.data()
+  var dict = data.grade
+  for(let i = 0; i<dict.length;i++){
 		grades.value.push({
-			grade: 85,
-			date: new Date().getTime()
+			grade: dict[i].grade,
+			date: new Date().getTime()+(i)
 		})
-		grades.value.push({
-			grade: 95,
-			date: new Date().getTime()+0.1
-		})
+}
 		setDoc(gradeDoc,{
     	grade: grades.value,
     })	
+}
+idk()
 
 </script>
 

@@ -33,7 +33,8 @@ export const cityConverter = {
             name: city.name,
             state: city.state,
             country: city.country
-            };
+    }; 
+    
     },
     fromFirestore: (snapshot, options) => {
         const data = snapshot.data(options);
@@ -41,10 +42,5 @@ export const cityConverter = {
     }
 };
 export const gradeDoc = doc(db, 'grades', 'jihr3ihi')
-export async function idk() {
-  const docSnap = await getDoc(gradeDoc);
-const data = docSnap.data()
-  var list = data.grade
-  return list
-}
+
 export default (db);
