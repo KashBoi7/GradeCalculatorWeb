@@ -15,6 +15,12 @@ const addgrade = () => {
 		grade: gradeInput.value,
 		date: new Date().getTime()
 	})
+				setDoc(gradeDoc,{
+    	grade: grades.value.reverse(),
+    })
+}
+const deleteGrade = () => {
+	grade.value.pop()
 }
 watch(grades, (newgrades) => {
 	const ws = [...newgrades]
@@ -62,7 +68,7 @@ watch(grades, (newgrades) => {
   const docSnap = await getDoc(gradeDoc);
   const data = docSnap.data()
   var dict = data.grade
-  for(let i = 0; i<dict.length;i++){
+  for(let i = 0;i<dict.length;i++){
 		grades.value.push({
 			grade: dict[i].grade,
 			date: new Date().getTime()+(i)
@@ -73,7 +79,6 @@ watch(grades, (newgrades) => {
     })	
 }
 idk()
-
 </script>
 
 <template>
@@ -113,6 +118,8 @@ idk()
 				<canvas ref="gradeChartEl"></canvas>
 			</div>
 
+			<button @click='deleteGrade' class="btn-outline-danger">
+			Delete</button>
 			<div class="grade-history">
 				<h2>Grade History</h2>
 				<ul>
