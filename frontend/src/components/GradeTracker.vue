@@ -32,9 +32,6 @@ watch(grades, (newgrades) => {
 			.sort((a, b) => a.date - b.date)
 			.map(grade => grade.grade)
 		gradeChart.value.update()
-			setDoc(gradeDoc,{
-    	grade: grades.value,
-    })
 		return
 	}
 			nextTick(() => {
@@ -68,10 +65,10 @@ watch(grades, (newgrades) => {
   const docSnap = await getDoc(gradeDoc);
   const data = docSnap.data()
   var dict = data.grade
-  for(let i = 0;i<dict.length;i++){
+  for(let i = dict.length-1;i>-1;i--){
 		grades.value.push({
 			grade: dict[i].grade,
-			date: new Date().getTime()+(i)
+			date: dict[i].date
 		})
 }
 		setDoc(gradeDoc,{
