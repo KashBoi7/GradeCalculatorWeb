@@ -4,6 +4,8 @@ import FinalGrade from '@/components/FinalGrade.vue'
 import HomeView from '@/components/HomeView.vue'
 import ComingSoon from '@/components/ComingSoon.vue'
 import GradeTracker from '@/components/GradeTracker.vue'
+import LogIn from '@/components/LogIn.vue'
+import SignUp from '@/components/SignUp.vue'
 const routes = [
   {
     path: '/gradecalc',
@@ -29,6 +31,16 @@ const routes = [
     path: '/gradetracker',
     name: 'GradeTracker',
     component: GradeTracker
+  },
+    {
+    path: '/login',
+    name: 'LogIn',
+    component: LogIn
+  },
+        {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
   }
 ]
 
