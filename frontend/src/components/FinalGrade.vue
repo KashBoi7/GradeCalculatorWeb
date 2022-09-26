@@ -99,9 +99,7 @@ import {db, gradeDoc, addGrade} from '@/firebaseinit'
       arrayExample: [5, true, "hello"],
       nullExample: null,
     }
-    setDoc(gradeDoc,{
-      grades: [1,2,5]
-    })
+
     }
   }
 }
