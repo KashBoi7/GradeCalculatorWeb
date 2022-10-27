@@ -2,6 +2,8 @@
   <div class='app'>
     <NavBar/>
   </div>
+                  <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
+
   <router-view/>
 </template>
 <script>
@@ -31,3 +33,25 @@ export default {
   margin: 0 auto;
 }
 </style>
+<script setup>
+import {onMounted, ref} from "vue";
+import {getAuth, onAuthStateChanged, signOut} from "firebase/auth"
+const isLoggedIn = ref(false);
+
+let auth;
+onMounted(() => {
+    auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if(user){
+        isLoggenIn.value= true;
+      } else{
+        isLoggenIn.value= false;
+      }
+    })
+})
+const handleSignOut = () => {
+  signOut(auth).then(() => {
+    router.push("/")
+  })
+};
+</script>

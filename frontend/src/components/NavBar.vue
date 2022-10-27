@@ -24,10 +24,11 @@
                     <li><router-link :to="{ name: 'GradeTracker'}" class="links">Grade Tracker</router-link></li>
                 </ul>
             </transition>
-            <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
         </nav>
     </header>
 </template>
+
+
 <script>
 export default {
   name: 'NavBar',
@@ -70,23 +71,6 @@ export default {
     }
   }
 }
-</script>
-<script setup>
-import {onMounted, ref} from "vue";
-import {getAuth, onAuthStateChanged, signOut} from "firebase/auth"
-const isLoggedIn = ref(false);
-
-let auth;
-onMounted(() => {
-    auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if(user){
-        isLoggenIn.value= true;
-      } else{
-        isLoggenIn.value= false;
-      }
-    })
-})
 </script>
 <style lang="scss" scoped>
 header {

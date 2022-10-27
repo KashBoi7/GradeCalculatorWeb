@@ -4,7 +4,7 @@
 
 <div class="mid-box">
             <div class="contain">
-            <h5>Username</h5>
+            <h5>Email</h5>
             <input v-model="email" required type="username" class="sm" min="0" max="150">
             <h5>Password</h5>
             <input v-model="password" required type="password" class="sm" min="0" max="150">
@@ -12,7 +12,7 @@
             <br>
             <p v-if="errMsg">{{errMsg}}</p>
             <button @click='register' requ
-            ired class="btn btn-outline-success">Sign Up</button>
+            ired class="btn btn-outline-success">Log In</button>
           </div>
 </div>
 </section>
@@ -30,6 +30,7 @@
         .then((data) =>{
             router.push('/gradetracker')
             console.log("Successfully registered!");
+            console.log(auth.currentUser)
         })
         .catch((error) => {
             console.log(error.code);

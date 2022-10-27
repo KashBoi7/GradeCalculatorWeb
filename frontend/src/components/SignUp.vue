@@ -4,14 +4,17 @@
 
 <div class="mid-box">
             <div class="contain">
-            <h5>Username</h5>
+            <h5>E-Mail</h5>
             <input v-model="email" required type="username" class="sm" min="0" max="150">
             <h5>Password</h5>
             <input v-model="password" required type="password" class="sm" min="0" max="150">
-            <router-link :to="{ name: 'LogIn'}" class="links">Log In</router-link>
-            <br>
-            <button @click='register' requ
+            <h5>Confirm Password</h5>
+            <input v-model="password" required type="password" class="sm" min="0" max="150">
+             <button @click='register' requ
             ired class="btn btn-outline-success">Sign Up</button>
+            <br>
+            <router-link :to="{ name: 'LogIn'}" class="links">Log In</router-link>
+            
           </div>
 </div>
 </section>
@@ -25,9 +28,10 @@
     const router = useRouter()
     const register = () => {
         createUserWithEmailAndPassword(getAuth(),email.value, password.value)
-        .then((data) =>{
-            router.push('/gradetracker')
+        .then((data) =>{ 
+
             console.log("Successfully registered!");
+             router.push('/gradetracker')
         })
         .catch((error) => {
             console.log(error.code);
