@@ -2,7 +2,7 @@
   <div class='app'>
     <NavBar/>
   </div>
-                  <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
+                  <button style="margin:150px;" @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
 
   <router-view/>
 </template>
@@ -42,10 +42,13 @@ let auth;
 onMounted(() => {
     auth = getAuth();
     onAuthStateChanged(auth, (user) => {
-      if(user){
-        isLoggenIn.value= true;
+      if(auth.currentUser){
+        isLoggedIn.value= true;
+        console.log("Logged In")
+        console.log(auth.currentUser)
       } else{
-        isLoggenIn.value= false;
+        isLoggedIn.value= false;
+        console.log("Not Logged In")
       }
     })
 })

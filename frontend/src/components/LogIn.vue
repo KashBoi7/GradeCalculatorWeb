@@ -11,7 +11,7 @@
             <router-link :to="{ name: 'SignUp'}" class="links">Don't Have an Account?</router-link>
             <br>
             <p v-if="errMsg">{{errMsg}}</p>
-            <button @click='register' requ
+            <button @click='login' requ
             ired class="btn btn-outline-success">Log In</button>
           </div>
 </div>
@@ -23,13 +23,14 @@
     import {useRouter} from 'vue-router';
     const email = ref("");
     const password = ref("");
-    const router = useRouter()
+    const router = useRouter()   
     const errMsg = ref();
-    const register = () => {
+    const auth = getAuth();
+    const login = () => {
         signInWithEmailAndPassword(getAuth(),email.value, password.value)
         .then((data) =>{
             router.push('/gradetracker')
-            console.log("Successfully registered!");
+            console.log("Successfully Logged In!");
             console.log(auth.currentUser)
         })
         .catch((error) => {
@@ -41,8 +42,8 @@
               case "auth/user-not-found":
                 errMsg.value = "No Account with that email was found";
                 break;
-              case "auth/wrong-passwordl":
-                errMsg.value = "Incorrect Passwordl";
+              case "auth/wrong-password":
+                errMsg.value = "Incorrect Password";
                 break;
               default:
                 errMsg.value = "Email or password was incorrect";

@@ -13,7 +13,7 @@
              <button @click='register' requ
             ired class="btn btn-outline-success">Sign Up</button>
             <br>
-            <router-link :to="{ name: 'LogIn'}" class="links">Log In</router-link>
+            <router-link :to="{ name: 'LogIn'}" class="links">Already have an account?</router-link>
             
           </div>
 </div>
@@ -25,12 +25,13 @@
     import {useRouter} from 'vue-router';
     const email = ref("");
     const password = ref("");
-    const router = useRouter()
+    const router = useRouter();
+    const auth = getAuth();
     const register = () => {
         createUserWithEmailAndPassword(getAuth(),email.value, password.value)
         .then((data) =>{ 
 
-            console.log("Successfully registered!");
+            console.log(auth.currentUser);
              router.push('/gradetracker')
         })
         .catch((error) => {

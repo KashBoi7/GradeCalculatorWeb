@@ -12,6 +12,9 @@
                 <li><router-link :to="{ name: 'ComingSoon'}" class="links">GPA Calculator</router-link></li>
                 <li><router-link :to="{ name: 'FinalGrade'}" class="links">Final Grade</router-link></li>
                 <li><router-link :to="{ name: 'GradeTracker'}" class="links">Grade Tracker</router-link></li>
+                 <li><router-link :to="{ name: 'SignUp'}" class="links">SignUp</router-link></li>
+                 <li><router-link :to="{ name: 'LogIn'}" class="links">Log In</router-link></li>
+                
             </ul>
             <div class="icon">
                 <i class="far fa-bars" @click="toggelMobileNav" v-show="mobile" :class="{'icon-active': mobileNav}"></i>
