@@ -14,7 +14,7 @@
                 <li><router-link :to="{ name: 'GradeTracker'}" class="links">Grade Tracker</router-link></li>
                  <li><router-link :to="{ name: 'SignUp'}" class="links">SignUp</router-link></li>
                  <li><router-link :to="{ name: 'LogIn'}" class="links">Log In</router-link></li>
-                
+                <li><button class="links" @click="handleSignOut" v-if="isLoggedIn">Sign out</button></li>
             </ul>
             <div class="icon">
                 <i class="far fa-bars" @click="toggelMobileNav" v-show="mobile" :class="{'icon-active': mobileNav}"></i>
@@ -31,7 +31,31 @@
     </header>
 </template>
 
+<script setup>
+import {onMounted, ref} from "vue";
+import {getAuth, onAuthStateChanged, signOut} from "firebase/auth"
+const isLoggedIn = ref(false);
 
+let auth;
+onMounted(() => {
+    auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if(auth.currentUser){
+        isLoggedIn.value= true;
+        console.log("Logged In")
+        console.log(auth.currentUser)
+      } else{
+        isLoggedIn.value= false;
+        console.log("Not Logged In")
+      }
+    })
+})
+const handleSignOut = () => {
+  signOut(auth).then(() => {
+    router.push("/")
+  })
+};
+</script>
 <script>
 export default {
   name: 'NavBar',

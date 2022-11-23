@@ -3,16 +3,29 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css" integrity="sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" crossorigin="anonymous">
 
 <div class="mid-box">
+
             <div class="contain">
+            <h1 style="margin-botton: 20px ;">Login</h1>
             <h5>Email</h5>
-            <input v-model="email" required type="username" class="sm" min="0" max="150">
+            <div class="sm">
+              <img src="..\\assets\\mail.png"  style="margin-right:3px;"/>
+               <input v-model="email" required type="username" style="border: none; outline: 0; font-size: 19px; background-color : transparent;">
+          </div>
             <h5>Password</h5>
-            <input v-model="password" required type="password" class="sm" min="0" max="150">
-            <router-link :to="{ name: 'SignUp'}" class="links">Don't Have an Account?</router-link>
-            <br>
+            <div class="sm">
+              <img src="..\\assets\\padlock.png" style="margin-right:3px;"/>
+               <input v-model="password" required type="password" style="border: none; outline: 0; font-size: 19px; background-color : transparent;">
+          </div>
+           
+
             <p v-if="errMsg">{{errMsg}}</p>
             <button @click='login' requ
-            ired class="btn btn-outline-success">Log In</button>
+            ired class="btn btn-lg btn-primary">Log In</button>
+            <br>
+                        <router-link :to="{ name: 'SignUp'}" class="links">Don't Have an Account?</router-link>
+            <br>
+            <router-link :to="{ name: 'SignUp'}" class="links">Forgot Password?</router-link>
+            <br>
           </div>
 </div>
 </section>
@@ -53,3 +66,9 @@
     };
 
     </script>
+    <style lang='scss'>
+  .btn-lg{
+    width: 45%;
+    margin-bottom: 10px;
+  }
+    </style>

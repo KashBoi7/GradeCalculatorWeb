@@ -6,11 +6,11 @@
           <div class="mid-box margin">
           <form>
             <h5>My current grade(%):</h5>
-            <input v-model="current" required type="number" class="sm" min="0" max="150">
+            <input v-model="current" required type="number" class="sm" min="0" max="150" placeholder="e.g. 89">
             <h5>My desired overall grade(%):</h5>
-            <input v-model="desired" required type="number" class="sm" min="0" max="150">
+            <input v-model="desired" required type="number" class="sm" min="0" max="150" placeholder="e.g. 92">
             <h5>My final's weight(%):</h5>
-            <input v-model="weight" required type="number" class="sm" min="0" max="100">
+            <input v-model="weight" required type="number" class="sm" min="0" max="100" placeholder="e.g. 10">
             <button @click='Calculate' required type="button" class="btn btn-outline-success">Calculate</button>
             </form>
             <Transition name="bounce">
@@ -41,8 +41,8 @@
   border: none;
   border-bottom: 2px solid black;
   height: 40px;
-  max-width: 40%;
-  min-width: 40%;
+  max-width: 45%;
+  min-width: 45%;
   outline: 0;
   font-size: 16px;
     margin: auto;
@@ -69,7 +69,6 @@
 </style>
 <script>
 import { getFirestore, collection, addDoc, setDoc, doc } from 'firebase/firestore';
-import {db, gradeDoc, addGrade} from '@/firebaseinit'
   export default {
   name: 'FinalGrade',
   data () {
@@ -92,13 +91,6 @@ import {db, gradeDoc, addGrade} from '@/firebaseinit'
         this.required = (this.desired - (this.current*(1 - this.finalWeight)))/this.finalWeight
         this.required = Math.round(100*this.required)/100
       }
-      const docData = {
-      stringExample: "Hello world!",
-      booleanExample: true,
-      numberExample: 3.14159265,
-      arrayExample: [5, true, "hello"],
-      nullExample: null,
-    }
 
     }
   }
